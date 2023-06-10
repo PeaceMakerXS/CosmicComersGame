@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Hero : Entity
+public class DanilHero : DanilEntity
 {
     [SerializeField] private float speed = 3f;
     [SerializeField] private int health;
