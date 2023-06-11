@@ -42,7 +42,7 @@ public class JumpingEnemy : Entity
         if (collision.gameObject == Hero.Instance.gameObject)
         {
             Hero.Instance.GetDamage();
-            Die();
+            //Die();
         }
     }
 

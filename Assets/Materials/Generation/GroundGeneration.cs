@@ -75,10 +75,10 @@ public class GroundGeneration : MonoBehaviour
     {
         for (int i = 0; i < r_square_q; i++)
         {
-            // var square = Instantiate(Square, Cellsave.transform.position + new Vector3(0, 3f, 0), Quaternion.identity, squaresParent);
             var square = Instantiate(Square,squaresParent);
             square.transform.localPosition = new Vector3(x, y + 3f, 0);
             Squares.Add(square);
+            x += 1;
         }
     }
 
