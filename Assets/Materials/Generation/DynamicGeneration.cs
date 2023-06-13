@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundGeneration : MonoBehaviour
+public class DynamicGeneration : MonoBehaviour
 {
     private GameObject Cell;
     public List<GameObject> Cells_toc = new List<GameObject>();
