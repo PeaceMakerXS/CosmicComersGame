@@ -65,7 +65,7 @@ public class Hero : Entity
 
     private void Jump()
     {
-        rb.AddForce(transform.up * jumpforce, ForceMode2D.Impulse);
+        rb.velocity = Vector2.up * jumpforce;
     }
 
     private void CheckGround()
