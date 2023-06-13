@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 1
-  jumpforce: 10
+  jumpforce: 25
   score: 0
   MoveDistance: 4.5
   MoveSpeed: 50
