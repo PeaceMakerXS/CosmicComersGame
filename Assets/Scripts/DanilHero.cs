@@ -14,7 +14,7 @@ public class DanilHero : DanilEntity
     private SpriteRenderer sprite;
 
     public Joystick joystick;
-    public static Hero Instance { get; set; }
+    public static DanilHero Instance { get; set; }
 
     void Awake()
     {

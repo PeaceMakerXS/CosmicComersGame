@@ -69,6 +69,7 @@ public class GroundGeneration : MonoBehaviour
         Cells.Add(cell);
         cell.transform.localPosition = new Vector3(x, y, 0);
         Cellsave = cell;
+        Debug.Log("New cell");
     }
 
     private void GenerateEnemy()
@@ -79,6 +80,7 @@ public class GroundGeneration : MonoBehaviour
             square.transform.localPosition = new Vector3(x, y + 3f, 0);
             Squares.Add(square);
             x += 1;
+            Debug.Log("New enemy");
         }
     }
 
