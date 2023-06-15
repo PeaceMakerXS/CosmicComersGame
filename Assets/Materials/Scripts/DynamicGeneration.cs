@@ -32,6 +32,8 @@ public class DynamicGeneration : MonoBehaviour
     private List<GameObject> Spikes = new List<GameObject>();
     private GameObject CellSpike;
 
+    //бочки
+
     private void Start()
     {
         Generate();
