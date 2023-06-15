@@ -6,6 +6,8 @@ public class BarrelExplosion : Entity
 {
     public GameObject hero;
     public GameObject barrel;
+
+    public GameObject Explosion;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == Hero.Instance.gameObject)
@@ -17,11 +19,14 @@ public class BarrelExplosion : Entity
 
     void Test()
     {
-        Destroy(this.gameObject);
         if (hero.transform.position.x - barrel.transform.position.x < 5)
         {
             Hero.Instance.GetDamage();
             Debug.Log("вот и пришел тот час 2...");
         }
+
+        var explosionRef = Instantiate(Explosion);
+        explosionRef.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Destroy(this.gameObject);
     }
 }

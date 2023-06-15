@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DynamicGeneration : MonoBehaviour
 {
+    //острова
     private GameObject Cell;
     public List<GameObject> Cells_toc = new List<GameObject>();
     public Transform Zero;
@@ -18,12 +19,18 @@ public class DynamicGeneration : MonoBehaviour
     float y = 0;
     float x = 6;
 
+    //мобы квадраты
     private GameObject Square;
     public Transform squaresParent;
     private List<GameObject> Squares= new List<GameObject>();
     public List<GameObject> Squares_toc = new List<GameObject>();
 
-    private GameObject Cellsave;
+
+    //спайки
+    public GameObject Spike;
+    public Transform spikeParent;
+    private List<GameObject> Spikes = new List<GameObject>();
+    private GameObject CellSpike;
 
     private void Start()
     {
@@ -51,11 +58,17 @@ public class DynamicGeneration : MonoBehaviour
             Cells.RemoveAt(0);
             GenerateNextCell();
             GenerateEnemy();
+            GenerateSpike();
         }
         if (Squares.Count > 10)
         {
             Destroy(Squares[0]);
             Squares.RemoveAt(0);
+        }
+        if (Spikes.Count > 1)
+        {
+            Destroy(Spikes[0]);
+            Spikes.RemoveAt(0);
         }
     }
 
@@ -68,7 +81,6 @@ public class DynamicGeneration : MonoBehaviour
         var cell = Instantiate(Cell, Zero);
         Cells.Add(cell);
         cell.transform.localPosition = new Vector3(x, y, 0);
-        Cellsave = cell;
         Debug.Log("New cell");
     }
 
@@ -84,6 +96,17 @@ public class DynamicGeneration : MonoBehaviour
         }
     }
 
+    private void GenerateSpike()
+    {
+        //Ran();
+        CellSpike = Cells[Cells.Count - 1];
+        x = (int)CellSpike.transform.localPosition.x + Random.Range(-2, 4); ;
+        y = CellSpike.GetComponent<Collider2D>().bounds.min.y +3f;
+        var spike = Instantiate(Spike, spikeParent);
+        Spikes.Add(spike);
+        spike.transform.localPosition = new Vector3(x, y, 0);
+    }
+
     private void Ran()
     {
         r_square = Random.Range(0, 2);
@@ -92,5 +115,6 @@ public class DynamicGeneration : MonoBehaviour
         r = Random.Range(0, 5);
         length = Random.Range(16, 20);
         Cell = Cells_toc[r];
+        Debug.Log(Cells.Count);
     }
 }
