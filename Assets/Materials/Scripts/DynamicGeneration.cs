@@ -37,6 +37,7 @@ public class DynamicGeneration : MonoBehaviour
     private void Start()
     {
         Generate();
+        GenerateSpike();
     }
 
     private void Generate()
@@ -54,23 +55,23 @@ public class DynamicGeneration : MonoBehaviour
 
     private void Update()
     {
+        if (Hero.Instance.transform.position.x > Spikes[0].transform.position.x + 35f)
+        {
+            Destroy(Spikes[0]);
+            Spikes.RemoveAt(0);
+            GenerateSpike();
+        }
         if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
         {
             Destroy(Cells[0]);
             Cells.RemoveAt(0);
             GenerateNextCell();
             GenerateEnemy();
-            GenerateSpike();
         }
         if (Squares.Count > 10)
         {
             Destroy(Squares[0]);
             Squares.RemoveAt(0);
-        }
-        if (Spikes.Count > 1)
-        {
-            Destroy(Spikes[0]);
-            Spikes.RemoveAt(0);
         }
     }
 
@@ -100,10 +101,9 @@ public class DynamicGeneration : MonoBehaviour
 
     private void GenerateSpike()
     {
-        //Ran();
         CellSpike = Cells[Cells.Count - 1];
         x = (int)CellSpike.transform.localPosition.x + Random.Range(-2, 4); ;
-        y = CellSpike.GetComponent<Collider2D>().bounds.min.y +3f;
+        y = CellSpike.GetComponent<Collider2D>().bounds.max.y;
         var spike = Instantiate(Spike, spikeParent);
         Spikes.Add(spike);
         spike.transform.localPosition = new Vector3(x, y, 0);
