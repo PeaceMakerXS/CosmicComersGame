@@ -64,7 +64,7 @@ public class DanilHero : DanilEntity
 
     private void CheckGround()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.3f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
         isGrounded = colliders.Length > 1;
     }
 

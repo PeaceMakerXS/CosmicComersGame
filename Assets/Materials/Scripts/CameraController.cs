@@ -6,10 +6,11 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform player;
     private Vector3 pos;
+    private Scene currentScene;
 
     private void Awake()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
+        currentScene = SceneManager.GetActiveScene();
         if (!player)
         {
             switch (currentScene.name)
@@ -29,7 +30,10 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         pos = player.position;
-        pos.x = player.position.x + 9f;
+        if (currentScene.name == "MoonLevel")
+        {
+            pos.x = player.position.x + 9f;
+        }
         pos.z = -10f;
 
         transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime);
