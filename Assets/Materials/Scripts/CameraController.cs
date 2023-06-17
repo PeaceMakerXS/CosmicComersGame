@@ -1,4 +1,6 @@
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -7,8 +9,21 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
         if (!player)
-            player = FindObjectOfType<Hero>().transform;
+        {
+            switch (currentScene.name)
+            {
+                case "EarthLevel":
+                    player = FindObjectOfType <DanilHero>().transform;
+                    break;
+
+                case "MoonLevel":
+                    player = FindObjectOfType<Hero>().transform;
+                    break;
+            }
+
+        }
     }
 
     private void Update()
