@@ -11,7 +11,7 @@ public class DynamicGeneration : MonoBehaviour
     public int Height, Width;
     public List<GameObject> Cells = new List<GameObject>();
 
-    int r = 0;
+    int r_cell = 0;
     int length = 0;
     int r_square = 0;
     int r_square_q = 0;
@@ -33,11 +33,16 @@ public class DynamicGeneration : MonoBehaviour
     private GameObject CellSpike;
 
     //бочки
+    public GameObject Barrel;
+    public Transform barrelParent;
+    private List<GameObject> Barrels = new List<GameObject>();
+    private GameObject CellBarrel;
 
     private void Start()
     {
         Generate();
         GenerateSpike();
+        //GenerateBarrel();
     }
 
     private void Generate()
@@ -66,13 +71,22 @@ public class DynamicGeneration : MonoBehaviour
             Destroy(Cells[0]);
             Cells.RemoveAt(0);
             GenerateNextCell();
+            
             GenerateEnemy();
+
+            GenerateBarrel();
         }
         if (Squares.Count > 10)
         {
             Destroy(Squares[0]);
             Squares.RemoveAt(0);
         }
+        if (Barrels.Count > 7)
+        {
+            Destroy(Barrels[0]);
+            Barrels.RemoveAt(0);
+        }
+
     }
 
     private void GenerateNextCell()
@@ -88,10 +102,10 @@ public class DynamicGeneration : MonoBehaviour
     }
 
     private void GenerateEnemy()
-    {
+    {   
         for (int i = 0; i < r_square_q; i++)
         {
-            var square = Instantiate(Square,squaresParent);
+            var square = Instantiate(Square, squaresParent);
             square.transform.localPosition = new Vector3(x, y + 3f, 0);
             Squares.Add(square);
             x += 1;
@@ -99,24 +113,39 @@ public class DynamicGeneration : MonoBehaviour
         }
     }
 
+    private void GenerateBarrel()
+    {
+        int r_barrel_q = Random.Range(1, 4);
+        CellBarrel = Cells[Cells.Count-1];
+        for (int i = 0; i < r_barrel_q; i++)
+        {
+            x = (int)CellBarrel.transform.localPosition.x + Random.Range(-2, 4);
+            y = CellBarrel.GetComponent<Collider2D>().bounds.max.y;
+            var barrel = Instantiate(Barrel, barrelParent);
+            Barrels.Add(barrel);
+            barrel.transform.localPosition = new Vector3(x, y + 2, 0);
+            x += 1;
+        }
+    }
+
     private void GenerateSpike()
     {
         CellSpike = Cells[Cells.Count - 1];
         x = (int)CellSpike.transform.localPosition.x + Random.Range(-2, 4); ;
-        y = CellSpike.GetComponent<Collider2D>().bounds.max.y;
+        y = CellSpike.transform.position.y;
         var spike = Instantiate(Spike, spikeParent);
         Spikes.Add(spike);
-        spike.transform.localPosition = new Vector3(x, y, 0);
+        spike.transform.localPosition = new Vector3(x, y+2f, 0);
     }
 
     private void Ran()
     {
-        r_square = Random.Range(0, 2);
+        r_square = Random.Range(0, 2); //на выбор
         Square = Squares_toc[r_square];
-        r_square_q = Random.Range(0, 4);
-        r = Random.Range(0, 5);
+        r_square_q = Random.Range(0, 4);//на количество
+
+        r_cell = Random.Range(0, 5);
         length = Random.Range(16, 20);
-        Cell = Cells_toc[r];
-        Debug.Log(Cells.Count);
+        Cell = Cells_toc[r_cell];
     }
 }

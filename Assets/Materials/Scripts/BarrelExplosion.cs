@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class BarrelExplosion : Entity
 {
-    public GameObject hero;
+    public Transform hero;
     public GameObject barrel;
 
     public GameObject Explosion;
+
+    private void Awake()
+    {
+        if (!hero)
+            hero = FindObjectOfType<Hero>().transform;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == Hero.Instance.gameObject)
