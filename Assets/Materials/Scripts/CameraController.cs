@@ -22,6 +22,9 @@ public class CameraController : MonoBehaviour
                 case "MoonLevel":
                     player = FindObjectOfType<Hero>().transform;
                     break;
+                case "SunLevel":
+                    player = FindObjectOfType<NIksHero>().transform;
+                    break;
             }
 
         }
