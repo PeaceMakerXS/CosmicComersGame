@@ -12,16 +12,25 @@ public class DanilHero : DanilEntity
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer sprite;
+    private Animator anim;
 
     public Joystick joystick;
     public static DanilHero Instance { get; set; }
+
+    private States State
+    {
+        get { return (States)anim.GetInteger("state"); }
+        set { anim.SetInteger("state", (int)value); }
+    }
 
     void Awake()
     {
         lives = 5;
         health = lives;
+
         rigidBody = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -31,10 +40,14 @@ public class DanilHero : DanilEntity
 
     private void Update()
     {
+        if (isGrounded)
+        {
+            State = States.idle;
+        }
 
         if (joystick.Horizontal != 0)
         {
-            Move();
+            Run();
         }
 
         if (isGrounded & joystick.Vertical > 0.5f)
@@ -48,8 +61,13 @@ public class DanilHero : DanilEntity
         }
     }
 
-    private void Move() 
+    private void Run() 
     {
+        if (isGrounded)
+        {
+            State = States.run;
+        }
+
         Vector3 direction = transform.right * joystick.Horizontal;
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
@@ -66,6 +84,16 @@ public class DanilHero : DanilEntity
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
         isGrounded = colliders.Length > 1;
+
+        if (!isGrounded && rigidBody.velocity.y < 0)
+        {
+            State = States.fall;
+        }
+        else if (!isGrounded)
+        {
+            State = States.jump;
+        }
+
     }
 
     public override void GetDamage()
@@ -73,4 +101,12 @@ public class DanilHero : DanilEntity
         health--;
         Debug.Log(health);
     }
+}
+
+public enum States
+{
+    idle,
+    run,
+    jump,
+    fall
 }

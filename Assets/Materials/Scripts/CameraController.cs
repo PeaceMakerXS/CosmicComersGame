@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
             switch (currentScene.name)
             {
                 case "EarthLevel":
-                    player = FindObjectOfType <DanilHero>().transform;
+                    player = FindObjectOfType<DanilHero>().transform;
                     break;
 
                 case "MoonLevel":

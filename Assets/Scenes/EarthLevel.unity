@@ -322,6 +322,7 @@ GameObject:
   - component: {fileID: 851282802}
   - component: {fileID: 851282804}
   - component: {fileID: 851282803}
+  - component: {fileID: 851282805}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -337,7 +338,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851282800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.73, y: -1.22, z: -1.0959154}
+  m_LocalPosition: {x: -8.162, y: -0.904, z: -1.0959154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -377,7 +378,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0271945, y: 0.6813738}
+  m_Offset: {x: -0.09130311, y: 0.8538724}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -388,7 +389,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9391422, y: 1.3595537}
+  m_Size: {x: 1.1996493, y: 1.719898}
   m_EdgeRadius: 0
 --- !u!114 &851282803
 MonoBehaviour:
@@ -433,6 +434,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &851282805
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851282800}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18c34a7eda92aeb4c83332e9982f61c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &873082674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1052,7 +1074,7 @@ GameObject:
   - component: {fileID: 1917230806}
   - component: {fileID: 1917230807}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1066,8 +1088,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917230805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.008, y: 0.76, z: 1.0959154}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.081, y: 0.863, z: 1.0959154}
+  m_LocalScale: {x: 0.17632866, y: 0.17632866, z: 0.17632866}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 851282801}
@@ -1114,7 +1136,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c04069ec3616d1840bfb0c4452e91fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15387186349fdca4987187745184aeb7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1278,6 +1300,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1563365489}
     m_Modifications:
+    - target: {fileID: 458937712175211332, guid: b5ec41ec832e3be409af7741deae1d24, type: 3}
+      propertyPath: m_Name
+      value: Sprite
+      objectReference: {fileID: 0}
     - target: {fileID: 458937712175211332, guid: b5ec41ec832e3be409af7741deae1d24, type: 3}
       propertyPath: m_Layer
       value: 0

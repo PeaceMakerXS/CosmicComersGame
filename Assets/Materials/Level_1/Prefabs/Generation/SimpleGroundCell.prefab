@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6064867621602558852}
   - component: {fileID: 8747620797291395475}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Transform:
   m_Children:
   - {fileID: 6064867621602558852}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &5149602662006099738
 EdgeCollider2D:
