@@ -81,7 +81,7 @@ public class DynamicGeneration : MonoBehaviour
             Destroy(Squares[0]);
             Squares.RemoveAt(0);
         }
-        if (Barrels.Count > 7)
+        if (Barrels.Count > 10)
         {
             Destroy(Barrels[0]);
             Barrels.RemoveAt(0);
@@ -132,10 +132,10 @@ public class DynamicGeneration : MonoBehaviour
     {
         CellSpike = Cells[Cells.Count - 1];
         x = (int)CellSpike.transform.localPosition.x + Random.Range(-2, 4); ;
-        y = CellSpike.transform.position.y;
+        y = CellSpike.GetComponent<Collider2D>().bounds.max.y;
         var spike = Instantiate(Spike, spikeParent);
         Spikes.Add(spike);
-        spike.transform.localPosition = new Vector3(x, y+2f, 0);
+        spike.transform.localPosition = new Vector3(x, y+1, 0);
     }
 
     private void Ran()
