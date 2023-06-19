@@ -150,7 +150,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1271499576}
   m_Father: {fileID: 687109437}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -712,7 +713,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243120354}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
 --- !u!1001 &1271499575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -795,8 +795,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3371171613120885409, guid: 5708601a5c28724418952994c146ef53, type: 3}
   m_PrefabInstance: {fileID: 1271499575}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> Stashed changes
 --- !u!1 &1370236264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,13 +1041,8 @@ MonoBehaviour:
   - {fileID: 1753288220701568575, guid: 9b6551e3215cf174e811c2c906d12c99, type: 3}
   Spike: {fileID: 3900657993845262401, guid: 2c2851884a48cd347a20cb6569f63041, type: 3}
   spikeParent: {fileID: 888445623}
-<<<<<<< Updated upstream
   Barrel: {fileID: 0}
   barrelParent: {fileID: 0}
-=======
-  Barrel: {fileID: 5947950291561641062, guid: 5708601a5c28724418952994c146ef53, type: 3}
-  barrelParent: {fileID: 50696383}
->>>>>>> Stashed changes
 --- !u!4 &1804231225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5045548205737578630, guid: ebd53905e5b4d5c49b40da2d4da2cb27, type: 3}
