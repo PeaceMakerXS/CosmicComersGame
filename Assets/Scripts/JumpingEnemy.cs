@@ -7,16 +7,16 @@ using UnityEditor.SearchService;
 
 public class JumpingEnemy : Entity
 {
-    [SerializeField] private float jumpforce = 17f;
-    [SerializeField] private int lives = 3;
+    [SerializeField] protected float jumpforce;
+    [SerializeField] protected int lives;
 
-    private SpriteRenderer sprite;
-    private Rigidbody2D rb;
+    protected SpriteRenderer sprite;
+    protected Rigidbody2D rb;
 
-    private bool IsGrounded = false;
+    protected bool IsGrounded = false;
     public static JumpingEnemy Instance { get; set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
@@ -24,23 +24,23 @@ public class JumpingEnemy : Entity
         Instance = this;
     }
 
-    private void Jump()
-    {
-        rb.velocity = Vector2.up * jumpforce;
-    }
-
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         CheckGround();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (IsGrounded)
             Jump();
     }
 
-    private void CheckGround()
+    protected void Jump()
+    {
+        rb.velocity = Vector2.up * jumpforce;
+    }
+
+    protected void CheckGround()
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
         IsGrounded = collider.Length > 1;

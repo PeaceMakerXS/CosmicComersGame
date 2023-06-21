@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  lives: 0
+  health: 0
   jumpForce: 7
   joystick: {fileID: 1573053821}
 --- !u!50 &851282804
@@ -1117,11 +1117,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561939921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2e281cf652c1645a821497f16add47, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c858e603083a2844aedf3f9785bb61d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpforce: 3
-  lives: 3
+  jumpforce: 0
+  lives: 0
 --- !u!1 &1563365488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,11 +1270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.89
+      value: 6.45
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.15
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.z

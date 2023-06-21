@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class GrassEnemy : JumpingEnemy
 {
-    void Start()
+    private void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        jumpforce = 5f;
+        lives = 3;
     }
 }
