@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hero : Entity
@@ -13,6 +14,9 @@ public class Hero : Entity
     private bool isMoving = false;
     [SerializeField] float MoveDistance = 3f;
     [SerializeField] float MoveSpeed = 23f;
+
+    Vector3 startPos;
+    Vector3 endPos;
 
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
@@ -30,8 +34,13 @@ public class Hero : Entity
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Логика, когда самолетик сталкивается с врагом
-            Debug.Log("Самолетик столкнулся с врагом!");
+            Debug.Log("Столкновение");
+            startPos = transform.position;
+            endPos = startPos - transform.right * 3;
+
+            // Перемещаем игрока в обратном направлении
+            if (!isMoving)
+                StartCoroutine(Move(startPos, endPos));
         }
     }
 
@@ -51,9 +60,11 @@ public class Hero : Entity
 
     private void Update()
     {
+        Debug.Log(isMoving);
         if (!IsGrounded && !isMoving)
             State = CosmicStaes.jump;
-        if (IsGrounded)
+
+        if (IsGrounded && !isMoving)
         {
             State = CosmicStaes.idle;
             Jump();
@@ -61,23 +72,23 @@ public class Hero : Entity
         if (Input.GetButtonDown("Jump") && !isMoving)
         {
             State = CosmicStaes.move;
-            StartCoroutine(Move());
+            startPos = transform.position;
+            endPos = startPos + transform.right * 3;
+
+            StartCoroutine(Move(startPos, endPos));
         }
     }
 
-    private IEnumerator Move()
+    private IEnumerator Move(Vector3 startPos, Vector3 endPos)
     {
-        score++;
-        //Debug.Log(score);
+        if (isMoving) yield break;
         isMoving = true;
-        Vector3 startPos = transform.position;
-        Vector3 endPos = transform.position + transform.right * MoveDistance *Time.deltaTime;
+
         float distanceCovered = 0f;
 
-        while (distanceCovered < MoveDistance)
+        while (distanceCovered < Vector3.Distance(startPos, endPos))
         {
-            float shiftAmount = MoveSpeed * Time.deltaTime;
-            transform.position += transform.right * shiftAmount;
+            transform.position = Vector3.MoveTowards(transform.position, endPos, MoveSpeed * Time.deltaTime);
             distanceCovered = Vector3.Distance(startPos, transform.position);
 
             yield return null;
