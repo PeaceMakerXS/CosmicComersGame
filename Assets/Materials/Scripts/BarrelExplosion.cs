@@ -16,6 +16,11 @@ public class BarrelExplosion : Entity
         if (!hero)
             hero = FindObjectOfType<Hero>().transform;
     }
+
+    private void Update()
+    {
+        CheckExpl();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == Hero.Instance.gameObject)
@@ -35,15 +40,19 @@ public class BarrelExplosion : Entity
 
         var explosionRef = Instantiate(Explosion,explousionParent);
         explosionRef.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Explosions.Add(explosionRef);
+        Explosions.Add(explosionRef); //они не добавл€ютс€????
         Destroy(this.gameObject);
-        Invoke("DestroyExpl", 2); //не вызываетс€
     }
 
-    void DestroyExpl()
+    private void CheckExpl()
     {
-        Debug.Log("а хули тогд");
-        Destroy(Explosions[0]);
-        Explosions.RemoveAt(0);
+        Debug.Log("ну должно!");
+        Debug.Log(Explosions.Count);
+        if (Explosions.Count > 1)
+        {
+            Debug.Log("ну должно!2");
+            Destroy(Explosions[0]);
+            Explosions.RemoveAt(0);
+        }
     }
 }
