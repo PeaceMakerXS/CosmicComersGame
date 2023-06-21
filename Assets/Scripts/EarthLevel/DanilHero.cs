@@ -6,7 +6,7 @@ using UnityEngine;
 public class DanilHero : Entity
 {
     [SerializeField] private float speed = 3f;
-    [SerializeField] private int lives = 5;
+    [SerializeField] private int health;
     [SerializeField] private float jumpForce = 7f;
     private bool isGrounded = false;
 
@@ -32,9 +32,15 @@ public class DanilHero : Entity
         Instance = this;
     }
 
+    private void Start()
+    {
+        health = 5;
+    }
+
     private void FixedUpdate()
     {
         CheckGround();
+        CheckFallingOutOfWorld();
     }
 
     private void Update()
@@ -56,6 +62,13 @@ public class DanilHero : Entity
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GetDamage();
+        }
+    }
     private void Run() 
     {
         if (isGrounded)
@@ -91,10 +104,22 @@ public class DanilHero : Entity
 
     }
 
+    private void CheckFallingOutOfWorld()
+    {
+        if (transform.position.y < -10f)
+        {
+            Die();
+        }
+    }
+
     public override void GetDamage()
     {
-        lives--;
-        Debug.Log(lives);
+        health--;
+        Debug.Log(health);
+        if (health == 0)
+        {
+            Die();
+        }
     }
 }
 
