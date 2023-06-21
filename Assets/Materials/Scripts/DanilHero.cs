@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DanilHero : DanilEntity
+public class DanilHero : Entity
 {
     [SerializeField] private float speed = 3f;
-    [SerializeField] private int health;
+    [SerializeField] private int lives = 5;
     [SerializeField] private float jumpForce = 7f;
     private bool isGrounded = false;
 
@@ -23,14 +23,13 @@ public class DanilHero : DanilEntity
         set { anim.SetInteger("state", (int)value); }
     }
 
-    void Awake()
+    private void Awake()
     {
-        lives = 5;
-        health = lives;
-
         rigidBody = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        Instance = this;
     }
 
     private void FixedUpdate()
@@ -55,10 +54,6 @@ public class DanilHero : DanilEntity
             Jump();
         }
 
-        if (health > lives)
-        {
-            health = lives;
-        }
     }
 
     private void Run() 
@@ -98,8 +93,8 @@ public class DanilHero : DanilEntity
 
     public override void GetDamage()
     {
-        health--;
-        Debug.Log(health);
+        lives--;
+        Debug.Log(lives);
     }
 }
 
