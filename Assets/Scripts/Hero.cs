@@ -16,8 +16,15 @@ public class Hero : Entity
 
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    private Animator anim;
 
     public static Hero Instance { get; set;}
+
+    private CosmicStaes State
+    {
+        get { return (CosmicStaes)anim.GetInteger("state"); }
+        set { anim.SetInteger("state", (int)value); }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -31,6 +38,7 @@ public class Hero : Entity
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim= GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
 
         Instance = this;
@@ -43,10 +51,16 @@ public class Hero : Entity
 
     private void Update()
     {
+        if (!IsGrounded && !isMoving)
+            State = CosmicStaes.jump;
         if (IsGrounded)
+        {
+            State = CosmicStaes.idle;
             Jump();
+        }
         if (Input.GetButtonDown("Jump") && !isMoving)
         {
+            State = CosmicStaes.move;
             StartCoroutine(Move());
         }
     }
@@ -88,4 +102,11 @@ public class Hero : Entity
         lives --;
         //Debug.Log(lives);
     }
+}
+
+public enum CosmicStaes
+{
+    idle,
+    move,
+    jump
 }
