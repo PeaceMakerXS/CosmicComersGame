@@ -76,7 +76,7 @@ public class Hero : Entity
 
     public override void GetDamage()
     {
-        lives -= 1;
+        lives --;
         //Debug.Log(lives);
     }
 }

@@ -115,7 +115,7 @@ Transform:
   m_Children:
   - {fileID: 113078012664352496}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &9039723549400378297
 EdgeCollider2D:
@@ -152,8 +152,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 1.6158458, y: 0.5277746}
-  - {x: -1.629911, y: 0.5358503}
+  - {x: 1.614284, y: 0.52}
+  - {x: -1.629911, y: 0.52}
   - {x: -1.5451362, y: 0.44945735}
   - {x: -1.6225052, y: 0.39528877}
   - {x: -1.6404419, y: 0.35631275}
@@ -213,7 +213,7 @@ EdgeCollider2D:
   - {x: 1.619746, y: 0.4638862}
   - {x: 1.6328368, y: 0.4815479}
   - {x: 1.6322585, y: 0.49991375}
-  - {x: 1.6142839, y: 0.52779835}
+  - {x: 1.6142839, y: 0.52}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

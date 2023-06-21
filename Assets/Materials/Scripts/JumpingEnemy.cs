@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEditor.SearchService;
 
 public class JumpingEnemy : Entity
 {
@@ -39,11 +42,23 @@ public class JumpingEnemy : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == Hero.Instance.gameObject)
+        if (SceneManager.GetActiveScene().name == "MoonLevel")
         {
-            Hero.Instance.GetDamage();
-            //Die();
+            if (collision.gameObject == Hero.Instance.gameObject)
+            {
+                Hero.Instance.GetDamage();
+                //Die();
+            }
         }
+        else if (SceneManager.GetActiveScene().name == "EarthLevel")
+        {
+            if (collision.gameObject == DanilHero.Instance.gameObject)
+            {
+                DanilHero.Instance.GetDamage();
+                //Die();
+            }
+        }
+
     }
 
     private void CheckGround()
