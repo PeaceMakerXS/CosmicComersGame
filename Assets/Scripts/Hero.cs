@@ -19,6 +19,15 @@ public class Hero : Entity
 
     public static Hero Instance { get; set;}
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Логика, когда самолетик сталкивается с врагом
+            Debug.Log("Самолетик столкнулся с врагом!");
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

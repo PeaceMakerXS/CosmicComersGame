@@ -40,27 +40,6 @@ public class JumpingEnemy : Entity
             Jump();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (SceneManager.GetActiveScene().name == "MoonLevel")
-        {
-            if (collision.gameObject == Hero.Instance.gameObject)
-            {
-                Hero.Instance.GetDamage();
-                //Die();
-            }
-        }
-        else if (SceneManager.GetActiveScene().name == "EarthLevel")
-        {
-            if (collision.gameObject == DanilHero.Instance.gameObject)
-            {
-                DanilHero.Instance.GetDamage();
-                //Die();
-            }
-        }
-
-    }
-
     private void CheckGround()
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);

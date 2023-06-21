@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7389060182262035726}
   m_Layer: 0
   m_Name: EnemySquare
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5045548205737578631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.94, y: 1.24, z: 0}
-  m_LocalScale: {x: 0.7322571, y: 0.7322571, z: 0.7322571}
+  m_LocalScale: {x: 0.83579826, y: 0.83579826, z: 0.83579826}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5045548206367798170}

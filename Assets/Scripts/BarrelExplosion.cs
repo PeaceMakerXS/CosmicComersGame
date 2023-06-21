@@ -11,6 +11,8 @@ public class BarrelExplosion : Entity
     public Transform explousionParent;
     private List<GameObject> Explosions = new List<GameObject>();
 
+    private GameObject explosionRef;
+
     private void Awake()
     {
         if (!hero)
@@ -19,7 +21,7 @@ public class BarrelExplosion : Entity
 
     private void Update()
     {
-        CheckExpl();
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,21 +40,21 @@ public class BarrelExplosion : Entity
             Debug.Log("вот и пришел тот час 2...");
         }
 
-        var explosionRef = Instantiate(Explosion,explousionParent);
-        explosionRef.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        explosionRef = Instantiate(Explosion,explousionParent);
+        explosionRef.transform.localPosition = new Vector3(barrel.transform.position.x, barrel.transform.position.y, barrel.transform.position.z);
         Explosions.Add(explosionRef); //они не добавляются????
+        Debug.Log(Explosions.Count);
         Destroy(this.gameObject);
+        Invoke("CheckExpl", 1);
     }
 
     private void CheckExpl()
     {
+        Destroy(explosionRef);
+
         Debug.Log("ну должно!");
-        Debug.Log(Explosions.Count);
-        if (Explosions.Count > 1)
-        {
-            Debug.Log("ну должно!2");
-            Destroy(Explosions[0]);
-            Explosions.RemoveAt(0);
-        }
+        Destroy(Explosions[0]);
+        Explosions.RemoveAt(0);
+
     }
 }

@@ -9,7 +9,7 @@ public class DynamicGeneration : MonoBehaviour
     public List<GameObject> Cells_toc = new List<GameObject>();
     public Transform Zero;
     public int Height, Width;
-    public List<GameObject> Cells = new List<GameObject>();
+    private List<GameObject> Cells = new List<GameObject>();
 
     int r_cell = 0;
     int length = 0;
@@ -42,7 +42,6 @@ public class DynamicGeneration : MonoBehaviour
     {
         Generate();
         GenerateSpike();
-        //GenerateBarrel();
     }
 
     private void Generate()
@@ -98,7 +97,6 @@ public class DynamicGeneration : MonoBehaviour
         var cell = Instantiate(Cell, Zero);
         Cells.Add(cell);
         cell.transform.localPosition = new Vector3(x, y, 0);
-        Debug.Log("New cell");
     }
 
     private void GenerateEnemy()
@@ -109,7 +107,6 @@ public class DynamicGeneration : MonoBehaviour
             square.transform.localPosition = new Vector3(x, y + 3f, 0);
             Squares.Add(square);
             x += 1;
-            Debug.Log("New enemy");
         }
     }
 
