@@ -36,7 +36,7 @@ public class Hero : Entity
         {
             Debug.Log("Столкновение");
             startPos = transform.position;
-            endPos = startPos - transform.right * 3;
+            endPos = startPos - transform.right * 2;
 
             // Перемещаем игрока в обратном направлении
             if (!isMoving)
@@ -100,6 +100,7 @@ public class Hero : Entity
     private void Jump()
     {
         rb.velocity = Vector2.up * jumpforce;
+        isMoving= false;
     }
 
     private void CheckGround()
