@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassEnemy : JumpingEnemy
+public class SlimeEnemy : JumpingEnemy
 {
     private Animator anim;
-
     private States State
     {
         get { return (States)anim.GetInteger("state"); }
@@ -21,22 +20,23 @@ public class GrassEnemy : JumpingEnemy
 
     private void Start()
     {
-        jumpforce = 3f;
-        lives = 2;
+        jumpforce = 6f;
+        lives = 3;
     }
 
     protected override void Update()
     {
         base.Update();
-        if (IsGrounded)
-        {
-            State = States.idle;
-        }
 
         if (lives == 0)
         {
             State = States.death;
             Invoke("Die", 1);
+        }
+
+        if (IsGrounded)
+        {
+            State = States.idle;
         }
     }
 
@@ -51,23 +51,12 @@ public class GrassEnemy : JumpingEnemy
     public override void GetDamage()
     {
         lives--;
-        Debug.Log("GrassEnemy:" + lives.ToString());
-    }
-
-    protected override void CheckGround()
-    {
-        base.CheckGround();
-
-        if (!IsGrounded)
-        {
-            State = States.jump;
-        }
+        Debug.Log("SlimeEnemy:" + lives.ToString());
     }
 
     public enum States
     {
         idle,
-        jump,
         death
     }
 }

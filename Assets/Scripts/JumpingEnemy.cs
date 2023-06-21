@@ -16,6 +16,7 @@ public class JumpingEnemy : Entity
     protected bool IsGrounded = false;
     public static JumpingEnemy Instance { get; set; }
 
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,7 +41,7 @@ public class JumpingEnemy : Entity
         rb.velocity = Vector2.up * jumpforce;
     }
 
-    protected void CheckGround()
+    protected virtual void CheckGround()
     {
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
         IsGrounded = collider.Length > 1;

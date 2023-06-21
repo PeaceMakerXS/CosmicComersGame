@@ -34,7 +34,7 @@ public class DanilHero : Entity
 
     private void Start()
     {
-        health = 5;
+        health = 10;
     }
 
     private void FixedUpdate()
@@ -115,7 +115,7 @@ public class DanilHero : Entity
     public override void GetDamage()
     {
         health--;
-        Debug.Log(health);
+        Debug.Log("Hero:" + health.ToString());
         if (health == 0)
         {
             Die();
