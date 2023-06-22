@@ -11,10 +11,11 @@ public class DynamicGeneration : MonoBehaviour
     public int Height, Width;
     private List<GameObject> Cells = new List<GameObject>();
 
-    int r_cell = 0;
-    int length = 0;
-    int r_square = 0;
-    int r_square_q = 0;
+    int random_cell = 0;
+    int random_length_for_cells = 0;
+    int random_square = 0;
+    int random_amount_squares = 0;
+    int random_enemy = 0;
 
     float y = 0;
     float x = 6;
@@ -40,21 +41,9 @@ public class DynamicGeneration : MonoBehaviour
 
     private void Start()
     {
-        Generate();
+        Ran();
+        StartGenerate();
         GenerateSpike();
-    }
-
-    private void Generate()
-    {
-        for (int i = 0; i < Width; i++)
-        {
-            Ran();
-            var cell = Instantiate(Cell, Zero);
-            Cells.Add(cell);
-            y += Random.Range(-2, 1);
-            cell.transform.localPosition = new Vector3(x, y, 0);
-            x += length;
-        }
     }
 
     private void Update()
@@ -69,6 +58,9 @@ public class DynamicGeneration : MonoBehaviour
         {
             Destroy(Cells[0]);
             Cells.RemoveAt(0);
+
+            Ran();
+
             GenerateNextCell();
             
             GenerateEnemy();
@@ -88,11 +80,23 @@ public class DynamicGeneration : MonoBehaviour
 
     }
 
+    private void StartGenerate()
+    {
+        for (int i = 0; i < Width; i++)
+        {
+            Ran();
+            var cell = Instantiate(Cell, Zero);
+            Cells.Add(cell);
+            y += Random.Range(-2, 1);
+            cell.transform.localPosition = new Vector3(x, y, 0);
+            x += random_length_for_cells;
+        }
+    }
+
     private void GenerateNextCell()
     {
-        Ran();
         var lastCell = Cells[Cells.Count - 1];
-        x = (float)lastCell.transform.localPosition.x + length;
+        x = (float)lastCell.transform.localPosition.x + random_length_for_cells;
         y = (float)lastCell.transform.localPosition.y + Random.Range(-2,2);
         var cell = Instantiate(Cell, Zero);
         Cells.Add(cell);
@@ -101,7 +105,7 @@ public class DynamicGeneration : MonoBehaviour
 
     private void GenerateEnemy()
     {   
-        for (int i = 0; i < r_square_q; i++)
+        for (int i = 0; i < random_amount_squares; i++)
         {
             var square = Instantiate(Square, squaresParent);
             square.transform.localPosition = new Vector3(x, y + 3f, 0);
@@ -137,12 +141,14 @@ public class DynamicGeneration : MonoBehaviour
 
     private void Ran()
     {
-        r_square = Random.Range(0, 2); //на выбор
-        Square = Squares_toc[r_square];
-        r_square_q = Random.Range(0, 4);//на количество
+        random_enemy = Random.Range(0, 3);
 
-        r_cell = Random.Range(0, 5);
-        length = Random.Range(16, 20);
-        Cell = Cells_toc[r_cell];
+        random_square = Random.Range(0, 2); //на выбор
+        Square = Squares_toc[random_square];
+        random_amount_squares = Random.Range(0, 4);//на количество
+
+        random_cell = Random.Range(0, 5);
+        random_length_for_cells = Random.Range(16, 20);
+        Cell = Cells_toc[random_cell];
     }
 }
