@@ -12,7 +12,6 @@ public class Hero : Entity
     public int score = 0;
 
     private bool isMoving = false;
-    [SerializeField] float MoveDistance = 3f;
     [SerializeField] float MoveSpeed = 23f;
 
     Vector3 startPos;
@@ -77,6 +76,10 @@ public class Hero : Entity
 
             StartCoroutine(Move(startPos, endPos));
         }
+
+        //death
+        if (transform.position.y < -100)
+            Die();
     }
 
     private IEnumerator Move(Vector3 startPos, Vector3 endPos)

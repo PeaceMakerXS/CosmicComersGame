@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4361143116214907047}
   m_Layer: 0
   m_Name: SimpleCell 3
-  m_TagString: Untagged
+  m_TagString: Island
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4534671634007819779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1514564, y: -0.043737944, z: 0}
-  m_LocalScale: {x: 2.7147, y: 1.35735, z: 2.7147}
+  m_LocalPosition: {x: 0.713, y: -0.043737944, z: 0}
+  m_LocalScale: {x: 2.593896, y: 1.35735, z: 2.7147}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

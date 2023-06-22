@@ -14,8 +14,8 @@ public class DynamicGeneration : MonoBehaviour
     int random_cell = 0;
     int random_length_for_cells = 0;
     int random_square = 0;
+    int random_square_borl = 0;
     int random_amount_squares = 0;
-    int random_enemy = 0;
 
     float y = 0;
     float x = 6;
@@ -43,17 +43,10 @@ public class DynamicGeneration : MonoBehaviour
     {
         Ran();
         StartGenerate();
-        GenerateSpike();
     }
 
     private void Update()
-    {
-        if (Hero.Instance.transform.position.x > Spikes[0].transform.position.x + 35f)
-        {
-            Destroy(Spikes[0]);
-            Spikes.RemoveAt(0);
-            GenerateSpike();
-        }
+    {   
         if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
         {
             Destroy(Cells[0]);
@@ -63,10 +56,14 @@ public class DynamicGeneration : MonoBehaviour
 
             GenerateNextCell();
             
-            GenerateEnemy();
-
-            GenerateBarrel();
+            GenerateEnemies();
         }
+        if (Spikes.Count > 5)
+        {
+            Destroy(Spikes[0]);
+            Spikes.RemoveAt(0);
+        } 
+        
         if (Squares.Count > 10)
         {
             Destroy(Squares[0]);
@@ -103,49 +100,59 @@ public class DynamicGeneration : MonoBehaviour
         cell.transform.localPosition = new Vector3(x, y, 0);
     }
 
-    private void GenerateEnemy()
-    {   
-        for (int i = 0; i < random_amount_squares; i++)
+    private void GenerateEnemies()
+    {
+        int situation = Random.Range(0, 4);
+
+        switch (situation)
         {
-            var square = Instantiate(Square, squaresParent);
-            square.transform.localPosition = new Vector3(x, y + 3f, 0);
-            Squares.Add(square);
-            x += 1;
+            case 0: //ничего 
+                break;
+            case 1: //квадраты
+                random_square_borl = Random.Range(0, 11);
+
+                if (random_square_borl <= 8)
+                    for (int i = 0; i < random_amount_squares; i++) //маленькие
+                    {
+                        var square = Instantiate(Square, squaresParent);
+                        square.transform.localPosition = new Vector3(x, y + 3f, 0);
+                        Squares.Add(square);
+                        x += 1;
+                    }
+                else
+                {
+                    Square = Squares_toc[2]; //большой
+                    var square = Instantiate(Square, squaresParent);
+                    square.transform.localPosition = new Vector3(x, y + 3f, 0);
+                    Squares.Add(square);
+                }
+                break;
+            case 2://бочки
+                int random_barrel_amount = Random.Range(1, 4);
+                CellBarrel = Cells[Cells.Count - 1];
+                for (int i = 0; i < random_barrel_amount; i++)
+                {
+                    var barrel = Instantiate(Barrel, barrelParent);
+                    Barrels.Add(barrel);
+                    barrel.transform.localPosition = new Vector3(x, y + 1, 0);
+                    x += 1;
+                }
+                break;
+            case 3://спайк
+                CellSpike = Cells[Cells.Count - 1];
+                var spike = Instantiate(Spike, spikeParent);
+                Spikes.Add(spike);
+                spike.transform.localPosition = new Vector3(x + Random.Range(-2, 4), y + 0.5f, 0);
+                break;
         }
     }
-
-    private void GenerateBarrel()
-    {
-        int r_barrel_q = Random.Range(1, 4);
-        CellBarrel = Cells[Cells.Count-1];
-        for (int i = 0; i < r_barrel_q; i++)
-        {
-            x = (int)CellBarrel.transform.localPosition.x + Random.Range(-2, 4);
-            y = CellBarrel.GetComponent<Collider2D>().bounds.max.y;
-            var barrel = Instantiate(Barrel, barrelParent);
-            Barrels.Add(barrel);
-            barrel.transform.localPosition = new Vector3(x, y + 2, 0);
-            x += 1;
-        }
-    }
-
-    private void GenerateSpike()
-    {
-        CellSpike = Cells[Cells.Count - 1];
-        x = (int)CellSpike.transform.localPosition.x + Random.Range(-2, 4); ;
-        y = CellSpike.GetComponent<Collider2D>().bounds.max.y;
-        var spike = Instantiate(Spike, spikeParent);
-        Spikes.Add(spike);
-        spike.transform.localPosition = new Vector3(x, y+1, 0);
-    }
-
     private void Ran()
     {
-        random_enemy = Random.Range(0, 3);
+        
 
         random_square = Random.Range(0, 2); //на выбор
         Square = Squares_toc[random_square];
-        random_amount_squares = Random.Range(0, 4);//на количество
+        random_amount_squares = Random.Range(1, 4);//на количество
 
         random_cell = Random.Range(0, 5);
         random_length_for_cells = Random.Range(16, 20);
