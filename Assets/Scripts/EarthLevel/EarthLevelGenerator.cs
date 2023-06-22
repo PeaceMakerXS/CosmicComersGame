@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EarthLevelGanerator : MonoBehaviour
 {
+    private GameObject Cell;
     // Start is called before the first frame update
     void Start()
     {

@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassEnemy : JumpingEnemy
+public class SnakeSlimeEnemy : Entity
 {
+    [SerializeField] private int lives;
+
     private Animator anim;
 
     private States State
@@ -12,35 +12,29 @@ public class GrassEnemy : JumpingEnemy
         set { anim.SetInteger("state", (int)value); }
     }
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         anim = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        jumpforce = 3f;
-        lives = 2;
+        lives = 5;
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
-
-        if (IsGrounded)
-        {
-            State = States.idle;
-        }
-
         if (lives == 0)
         {
             State = States.death;
             Invoke("Die", 1);
         }
-    }
 
+        else
+        {
+            State = States.idle;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -52,23 +46,12 @@ public class GrassEnemy : JumpingEnemy
     public override void GetDamage()
     {
         lives--;
-        Debug.Log("GrassEnemy:" + lives.ToString());
-    }
-
-    protected override void CheckGround()
-    {
-        base.CheckGround();
-
-        if (!IsGrounded)
-        {
-            State = States.jump;
-        }
+        Debug.Log("SlimeSnakeEnemy:" + lives.ToString());
     }
 
     public enum States
     {
         idle,
-        jump,
         death
     }
 }
