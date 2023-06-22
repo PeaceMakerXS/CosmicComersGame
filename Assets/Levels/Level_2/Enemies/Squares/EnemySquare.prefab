@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5045548205737578630}
   - component: {fileID: 1905361820912226622}
   - component: {fileID: 1216454796625978632}
-  - component: {fileID: 7389060182262035726}
+  - component: {fileID: 183282292892157995}
   m_Layer: 0
   m_Name: EnemySquare
   m_TagString: Enemy
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7389060182262035726
+--- !u!114 &183282292892157995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5045548205737578631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2e281cf652c1645a821497f16add47, type: 3}
+  m_Script: {fileID: 11500000, guid: cdba5436f6464bf468549516d58e62ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   jumpforce: 10
