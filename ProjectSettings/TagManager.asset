@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Island
+  - Spike
   layers:
   - Default
   - TransparentFX
