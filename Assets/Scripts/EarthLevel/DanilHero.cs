@@ -34,7 +34,7 @@ public class DanilHero : Entity
 
     private void Start()
     {
-        health = 10;
+        health = 20;
     }
 
     private void FixedUpdate()

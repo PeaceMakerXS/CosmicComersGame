@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7339546410596197005}
   - component: {fileID: 6092350128305925096}
   m_Layer: 0
-  m_Name: SimpleGroundCell_2
+  m_Name: BigGroundCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8462855145467590158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06829877, y: 0.0019521564, z: -0.023123559}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
