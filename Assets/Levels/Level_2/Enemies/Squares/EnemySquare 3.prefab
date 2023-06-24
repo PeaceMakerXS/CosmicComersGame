@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4399502440366152371}
   m_Layer: 0
   m_Name: EnemySquare 3
-  m_TagString: Enemy
+  m_TagString: Square
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

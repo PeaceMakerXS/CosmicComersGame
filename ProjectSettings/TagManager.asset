@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Island
   - Spike
+  - Barrel
+  - Square
   layers:
   - Default
   - TransparentFX

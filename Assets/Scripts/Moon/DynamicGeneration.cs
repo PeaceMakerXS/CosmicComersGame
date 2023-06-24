@@ -100,7 +100,6 @@ public class DynamicGeneration : MonoBehaviour
     private void GenerateEnemies()
     {
         int situation = Random.Range(0, 9);
-        Debug.Log(situation);
 
         switch (situation)
         {

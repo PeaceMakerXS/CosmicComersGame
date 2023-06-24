@@ -10,8 +10,10 @@ public class BarrelExplosion : Entity
     public GameObject Explosion;
     public Transform explousionParent;
     private List<GameObject> Explosions = new List<GameObject>();
+     private GameObject explosionRef;
 
-    private GameObject explosionRef;
+    private GameObject[] Squares;
+
 
     private void Awake()
     {
@@ -21,7 +23,7 @@ public class BarrelExplosion : Entity
 
     private void Update()
     {
-        
+        Squares = GameObject.FindGameObjectsWithTag("Square");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -34,10 +36,16 @@ public class BarrelExplosion : Entity
 
     void Boom()
     {
-        if (hero.transform.position.x - barrel.transform.position.x < 5)
+        if (Mathf.Abs(hero.transform.position.x - barrel.transform.position.x) < 5)
         {
             Hero.Instance.GetDamage();
             Debug.Log("вот и пришел тот час 2...");
+        }
+
+        for (int i = 0; i< Squares.Length; i++)
+        {
+            if (Mathf.Abs(Squares[i].transform.position.x - barrel.transform.position.x) < 5)
+                Destroy(Squares[i]);
         }
 
         explosionRef = Instantiate(Explosion,explousionParent);
