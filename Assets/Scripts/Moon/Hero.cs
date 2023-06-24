@@ -22,6 +22,8 @@ public class Hero : Entity
 
     public static Hero Instance { get; set;}
 
+    private GameObject[] Squares;
+
     private CosmicStaes State
     {
         get { return (CosmicStaes)anim.GetInteger("state"); }
@@ -30,16 +32,27 @@ public class Hero : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Square"))
-        {
-            GetDamage();
-            // Перемещаем игрока в обратном направлении
-            startPos = transform.position;
-            endPos = startPos - transform.right * 2;
-            if (!isMoving)
-                StartCoroutine(Move(startPos, endPos));
-        }
         if (collision.gameObject.CompareTag("Spike")) GetDamage();
+
+        foreach (GameObject square in Squares)
+        {
+            if (square.GetComponent<Collider2D>().bounds.Intersects(collision.collider.bounds))
+            {
+                if (square.transform.position.y > transform.position.y)
+                {
+                    Debug.Log("worrrrrrrk");
+                    GetDamage();
+
+                }
+                if (square.transform.position.x > transform.position.x)
+                {
+                    Debug.Log("baccck");
+                    startPos = transform.position;
+                    endPos = startPos - transform.right * 2;
+                    StartCoroutine(Move(startPos, endPos));
+                }
+            }
+        }
     }
 
     private void Awake()
@@ -52,12 +65,12 @@ public class Hero : Entity
 
     private void FixedUpdate()
     {
+        Squares = GameObject.FindGameObjectsWithTag("Square");
         CheckGround();
     }
 
     private void Update()
     {
-        Debug.Log(isMoving);
         if (!IsGrounded && !isMoving)
             State = CosmicStaes.jump;
 
