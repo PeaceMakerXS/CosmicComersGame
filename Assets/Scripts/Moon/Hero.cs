@@ -18,7 +18,6 @@ public class Hero : Entity
     Vector3 endPos;
 
     private Rigidbody2D rb;
-    private SpriteRenderer sprite;
     private Animator anim;
 
     public static Hero Instance { get; set;}
@@ -31,23 +30,22 @@ public class Hero : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Square"))
         {
-            Debug.Log("Столкновение");
+            GetDamage();
+            // Перемещаем игрока в обратном направлении
             startPos = transform.position;
             endPos = startPos - transform.right * 2;
-
-            // Перемещаем игрока в обратном направлении
             if (!isMoving)
                 StartCoroutine(Move(startPos, endPos));
         }
+        if (collision.gameObject.CompareTag("Spike")) GetDamage();
     }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim= GetComponent<Animator>();
-        sprite = GetComponentInChildren<SpriteRenderer>();
 
         Instance = this;
     }
@@ -80,6 +78,8 @@ public class Hero : Entity
         //death
         if (transform.position.y < -100)
             Die();
+        //if (lives == 0)
+        //    Die();
     }
 
     private IEnumerator Move(Vector3 startPos, Vector3 endPos)
@@ -115,7 +115,7 @@ public class Hero : Entity
     public override void GetDamage()
     {
         lives --;
-        //Debug.Log(lives);
+        Debug.Log(lives);
     }
 }
 
