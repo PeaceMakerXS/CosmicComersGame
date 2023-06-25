@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 851282804}
   - component: {fileID: 851282803}
   - component: {fileID: 851282805}
-  - component: {fileID: 851282806}
+  - component: {fileID: 851282807}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -690,8 +690,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!60 &851282806
-PolygonCollider2D:
+--- !u!70 &851282807
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -722,69 +722,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.37917614, y: 0.39584678}
-      - {x: 0.31949663, y: 0.4377572}
-      - {x: 0.26026058, y: 0.53350157}
-      - {x: 0.16367245, y: 0.6959212}
-      - {x: 0.28428888, y: 0.75120544}
-      - {x: 0.34829426, y: 0.801905}
-      - {x: 0.41320133, y: 0.9207356}
-      - {x: 0.4342599, y: 1.0308381}
-      - {x: 0.439301, y: 1.1356035}
-      - {x: 0.4833269, y: 1.2003807}
-      - {x: 0.4850974, y: 1.3398683}
-      - {x: 0.36694813, y: 1.5171742}
-      - {x: 0.24006367, y: 1.596622}
-      - {x: 0.15224361, y: 1.63256}
-      - {x: -0.17919064, y: 1.6930811}
-      - {x: -0.46079254, y: 1.7029529}
-      - {x: -0.43401527, y: 1.621595}
-      - {x: -0.38517952, y: 1.5757768}
-      - {x: -0.5835991, y: 1.5282627}
-      - {x: -0.5710888, y: 1.4485025}
-      - {x: -0.4369583, y: 1.4042345}
-      - {x: -0.56093407, y: 1.3976382}
-      - {x: -0.6730852, y: 1.3204772}
-      - {x: -0.6387892, y: 1.2260172}
-      - {x: -0.5535984, y: 1.1654073}
-      - {x: -0.6744156, y: 1.1269592}
-      - {x: -0.63565636, y: 1.0180696}
-      - {x: -0.54690075, y: 0.96710765}
-      - {x: -0.49100208, y: 0.8632606}
-      - {x: -0.39099598, y: 0.8301605}
-      - {x: -0.33326912, y: 0.7724009}
-      - {x: -0.22385406, y: 0.7071583}
-      - {x: -0.3143177, y: 0.67353374}
-      - {x: -0.38891315, y: 0.5680511}
-      - {x: -0.47753525, y: 0.42763317}
-      - {x: -0.4991684, y: 0.36129683}
-      - {x: -0.50559527, y: 0.30061683}
-      - {x: -0.4467306, y: 0.22447181}
-      - {x: -0.39449215, y: 0.2217564}
-      - {x: -0.3514738, y: 0.22508627}
-      - {x: -0.30430317, y: 0.28411222}
-      - {x: -0.23933601, y: 0.20496398}
-      - {x: -0.25, y: -0.015}
-      - {x: 0.20925438, y: -0.015}
-      - {x: 0.22660828, y: 0.08231133}
-      - {x: 0.16837168, y: 0.20979035}
-      - {x: 0.22280598, y: 0.2697981}
-      - {x: 0.31374407, y: 0.22330618}
-      - {x: 0.38365698, y: 0.23591626}
-      - {x: 0.41123247, y: 0.3160218}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: -0.05851078, y: 0.83144975}
+  m_Size: {x: 1.1536789, y: 1.7441726}
+  m_Direction: 0
 --- !u!1 &912808057
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &990031720
 Transform:
   m_ObjectHideFlags: 0
@@ -1708,11 +1648,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.46
+      value: 12.07
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.29
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.z
