@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
-public class SnakeSlimeEnemy : SnakeEnemy
+public class SnakeLavaEnemy : SnakeEnemy
 {
     protected override void Start()
     {
         base.Start();
-        lives = 2;
+        lives = 4;
     }
 
     public override void GetDamage()
     {
         lives--;
-        Debug.Log("SnakeSlimeEnemy:" + lives);
+        Debug.Log("SnakeLavaEnemy:" + lives);
         StartCoroutine(OnHit());
 
         if (lives < 1)
@@ -24,9 +25,9 @@ public class SnakeSlimeEnemy : SnakeEnemy
 
     private IEnumerator OnHit()
     {
-        sprite.color = new Color(EarthLevelConstants.EnemyHitColors.SnakeSlime.firstColor,
-            EarthLevelConstants.EnemyHitColors.SnakeSlime.secondColor,
-            EarthLevelConstants.EnemyHitColors.SnakeSlime.thirdColor);
+        sprite.color = new Color(EarthLevelConstants.EnemyHitColors.SnakeLava.firstColor,
+            EarthLevelConstants.EnemyHitColors.SnakeLava.secondColor,
+            EarthLevelConstants.EnemyHitColors.SnakeLava.thirdColor);
         yield return new WaitForSeconds(0.3f);
         sprite.color = new Color(1f, 1f, 1f);
     }

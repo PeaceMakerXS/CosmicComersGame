@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6051052290103513525}
   - component: {fileID: 6884516999962759827}
   - component: {fileID: 3004376466056332376}
-  - component: {fileID: 7524210351417875347}
+  - component: {fileID: 5577088229762685344}
   m_Layer: 0
   m_Name: SnakeSlimeEnemy
   m_TagString: Enemy
@@ -213,7 +213,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7524210351417875347
+--- !u!114 &5577088229762685344
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4797454752583636481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a983fc7d2c117574ebb5392f780cae6a, type: 3}
+  m_Script: {fileID: 11500000, guid: c841de78338097349b3aa0f0acca9c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 0

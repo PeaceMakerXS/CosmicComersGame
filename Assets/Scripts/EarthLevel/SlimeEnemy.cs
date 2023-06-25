@@ -13,7 +13,7 @@ public class SlimeEnemy : JumpingEnemy
         _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
         jumpforce = 6f;
-        lives = 3;
+        lives = 2;
     }
 
     protected override void FixedUpdate()
@@ -40,10 +40,20 @@ public class SlimeEnemy : JumpingEnemy
         }
     }
 
+    private IEnumerator OnHit()
+    {
+        sprite.color = new Color(EarthLevelConstants.EnemyHitColors.SlimeBlock.firstColor,
+            EarthLevelConstants.EnemyHitColors.SlimeBlock.secondColor,
+            EarthLevelConstants.EnemyHitColors.SlimeBlock.thirdColor);
+        yield return new WaitForSeconds(0.3f);
+        sprite.color = new Color(1f, 1f, 1f);
+    }
+
     public override void GetDamage()
     {
         lives--;
         Debug.Log("SlimeEnemy:" + lives);
+        StartCoroutine(OnHit());
 
         if (lives < 1)
         {

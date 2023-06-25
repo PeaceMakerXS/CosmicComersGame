@@ -34,6 +34,15 @@ public class FlyingFollowEnemy : Entity
         }
     }
 
+    private IEnumerator OnHit()
+    {
+        sprite.color = new Color(EarthLevelConstants.EnemyHitColors.Bee.firstColor,
+            EarthLevelConstants.EnemyHitColors.Bee.secondColor,
+            EarthLevelConstants.EnemyHitColors.Bee.thirdColor);
+        yield return new WaitForSeconds(0.3f);
+        sprite.color = new Color(1f, 1f, 1f);
+    }
+
     private void Move()
     {
         if (player)
@@ -48,6 +57,7 @@ public class FlyingFollowEnemy : Entity
     {
         lives--;
         Debug.Log("FlyingEnemy:" + lives);
+        StartCoroutine(OnHit());
 
         if (lives < 1)
         {

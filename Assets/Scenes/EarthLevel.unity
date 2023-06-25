@@ -618,7 +618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851282800}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.51, y: 1.33, z: -1.0959153}
+  m_LocalPosition: {x: -7.95, y: 3.73, z: -1.0959153}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1434,6 +1434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrassBlockEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1463549519319447851, guid: d4a771c7a915dfe4c9d311335089cace, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2013200854356959979, guid: d4a771c7a915dfe4c9d311335089cace, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1477,6 +1481,10 @@ PrefabInstance:
     - target: {fileID: 2013200854356959979, guid: d4a771c7a915dfe4c9d311335089cace, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267494865034381422, guid: d4a771c7a915dfe4c9d311335089cace, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1608,6 +1616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeBlockEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8127401447789282320, guid: f34da565ada01d14a9f3e529e097bdb0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1624,6 +1636,10 @@ PrefabInstance:
     - target: {fileID: 3025350454516636412, guid: 46dc69f3d9f993d41a6d0c42f5dcc8f7, type: 3}
       propertyPath: m_Name
       value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 3025350454516636412, guid: 46dc69f3d9f993d41a6d0c42f5dcc8f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5265248880368460501, guid: 46dc69f3d9f993d41a6d0c42f5dcc8f7, type: 3}
       propertyPath: player
@@ -1692,11 +1708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.92
+      value: 15.46
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: 2912404488294901432, guid: 861de85ed9b0c1c49bae866ed7d1a45f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1859,6 +1875,10 @@ PrefabInstance:
       value: SnakeLavaEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 5924148115553005834, guid: 270922abcb9c8e6429838d46a84bccb2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924148115553005834, guid: 270922abcb9c8e6429838d46a84bccb2, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -1966,6 +1986,22 @@ PrefabInstance:
     - target: {fileID: 4797454752583636481, guid: 3378900a9850bfa4ebf95117c3f2bf30, type: 3}
       propertyPath: m_Name
       value: SnakeSlimeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797454752583636481, guid: 3378900a9850bfa4ebf95117c3f2bf30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478829059496373554, guid: 3378900a9850bfa4ebf95117c3f2bf30, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478829059496373554, guid: 3378900a9850bfa4ebf95117c3f2bf30, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8478829059496373554, guid: 3378900a9850bfa4ebf95117c3f2bf30, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
