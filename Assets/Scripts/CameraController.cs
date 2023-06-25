@@ -39,6 +39,11 @@ public class CameraController : MonoBehaviour
             {
                 pos.x = player.position.x + 9f;
             }
+            else if (currentScene.name == "SunLevel")
+            {
+                pos.y = 0;
+                pos.x = player.position.x+9f;
+            }
             pos.z = -10f;
 
             transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime);

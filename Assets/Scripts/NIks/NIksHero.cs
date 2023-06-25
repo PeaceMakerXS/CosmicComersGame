@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NIksHero : MonoBehaviour
 {
-    public float speed = 5f; // Скорость движения самолетика
+    public float speed = 10f; // Скорость движения самолетика
     public float speed2 = 10f;
     private float minY; 
     private float maxY;
@@ -14,8 +14,8 @@ public class NIksHero : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        minY = -0.5f;
-        maxY = 7.5f;
+        minY = -4f;
+        maxY = 4f;
     }
 
     private void Awake()
