@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SnakeSlimeIdle
+  m_Name: SnakeLavaIdle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,11 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 430c48ae955344a4c981c24d2591ab5e, type: 3}
+      value: {fileID: 21300000, guid: 6581b3a03961cd646bc56ffc02190bfd, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 4c904bf71fd9bb243b96edc75a932b51, type: 3}
+      value: {fileID: 21300000, guid: 6b8c5958f13475e48bb61028e5ab373b, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 430c48ae955344a4c981c24d2591ab5e, type: 3}
+      value: {fileID: 21300000, guid: 6581b3a03961cd646bc56ffc02190bfd, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212
@@ -48,9 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 430c48ae955344a4c981c24d2591ab5e, type: 3}
-    - {fileID: 21300000, guid: 4c904bf71fd9bb243b96edc75a932b51, type: 3}
-    - {fileID: 21300000, guid: 430c48ae955344a4c981c24d2591ab5e, type: 3}
+    - {fileID: 21300000, guid: 6581b3a03961cd646bc56ffc02190bfd, type: 3}
+    - {fileID: 21300000, guid: 6b8c5958f13475e48bb61028e5ab373b, type: 3}
+    - {fileID: 21300000, guid: 6581b3a03961cd646bc56ffc02190bfd, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

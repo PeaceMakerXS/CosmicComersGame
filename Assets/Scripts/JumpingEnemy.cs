@@ -14,15 +14,11 @@ public class JumpingEnemy : Entity
     protected Rigidbody2D rb;
 
     protected bool IsGrounded = false;
-    public static JumpingEnemy Instance { get; set; }
-
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-
-        Instance = this;
     }
 
     protected virtual void FixedUpdate()

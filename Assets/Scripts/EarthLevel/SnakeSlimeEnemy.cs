@@ -4,40 +4,19 @@ public class SnakeSlimeEnemy : Entity
 {
     [SerializeField] private int lives;
 
-    private Animator anim;
-
-    private States State
-    {
-        get { return (States)anim.GetInteger("state"); }
-        set { anim.SetInteger("state", (int)value); }
-    }
-
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-    }
+    private Animator _animator;
+    private Collider2D _collider;
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
+        _collider = GetComponent<Collider2D>();
         lives = 5;
     }
 
-    private void Update()
-    {
-        if (lives == 0)
-        {
-            State = States.death;
-            Invoke("Die", 1);
-        }
-
-        else
-        {
-            State = States.idle;
-        }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (lives > 0 && collision.gameObject.CompareTag("Player"))
         {
             GetDamage();
         }
@@ -46,12 +25,18 @@ public class SnakeSlimeEnemy : Entity
     public override void GetDamage()
     {
         lives--;
-        Debug.Log("SlimeSnakeEnemy:" + lives.ToString());
+        Debug.Log("SnakeEnemy:" + lives);
+
+        if (lives < 1)
+        {
+            Die();
+        }
     }
 
-    public enum States
+    public override void Die()
     {
-        idle,
-        death
+        _collider.isTrigger = true;
+        _animator.SetTrigger("death");
     }
+
 }

@@ -6,41 +6,40 @@ using UnityEngine;
 public class DanilHero : Entity
 {
     [SerializeField] private float speed = 3f;
-    [SerializeField] private int health;
     [SerializeField] private float jumpForce = 7f;
+    [SerializeField] private int health;
+    
     private bool isGrounded = false;
 
     private Rigidbody2D rigidBody;
     private SpriteRenderer sprite;
-    private Animator anim;
+    private Animator _animator;
 
     public Joystick joystick;
     public static DanilHero Instance { get; set; }
 
     private States State
     {
-        get { return (States)anim.GetInteger("state"); }
-        set { anim.SetInteger("state", (int)value); }
+        get { return (States)_animator.GetInteger("state"); }
+        set { _animator.SetInteger("state", (int)value); }
     }
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         sprite = GetComponentInChildren<SpriteRenderer>();
-        anim = GetComponent<Animator>();
-
         Instance = this;
     }
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         health = 20;
     }
 
     private void FixedUpdate()
     {
         CheckGround();
-        CheckFallingOutOfWorld();
     }
 
     private void Update()
@@ -104,22 +103,21 @@ public class DanilHero : Entity
 
     }
 
-    private void CheckFallingOutOfWorld()
+    public override void GetDamage()
     {
-        if (transform.position.y < -10f)
+        health--;
+        Debug.Log("Hero:" + health);
+
+        if (health < 1)
         {
             Die();
         }
     }
 
-    public override void GetDamage()
+    public override void Die()
     {
-        health--;
-        Debug.Log("Hero:" + health.ToString());
-        if (health == 0)
-        {
-            Die();
-        }
+        State = States.death;
+        base.Die();
     }
 }
 
@@ -128,5 +126,6 @@ public enum States
     idle,
     run,
     jump,
-    fall
+    fall,
+    death
 }

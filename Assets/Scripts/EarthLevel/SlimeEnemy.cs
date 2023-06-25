@@ -1,48 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class SlimeEnemy : JumpingEnemy
 {
-    private Animator anim;
-    private States State
-    {
-        get { return (States)anim.GetInteger("state"); }
-        set { anim.SetInteger("state", (int)value); }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        anim = GetComponent<Animator>();
-    }
+    private Animator _animator;
+    private Collider2D _collider;
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
+        _collider = GetComponent<Collider2D>();
         jumpforce = 6f;
         lives = 3;
     }
 
+    protected override void FixedUpdate()
+    {
+        if (lives > 0)
+        {
+            CheckGround();
+        }
+    }
+
     protected override void Update()
     {
-        base.Update();
-
-        if (lives == 0)
+        if (lives > 0 && IsGrounded)
         {
-            State = States.death;
-            Invoke("Die", 1);
-        }
-
-        if (IsGrounded)
-        {
-            State = States.idle;
+            Jump();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (lives > 0 && collision.gameObject.CompareTag("Player"))
         {
             GetDamage();
         }
@@ -51,12 +43,18 @@ public class SlimeEnemy : JumpingEnemy
     public override void GetDamage()
     {
         lives--;
-        Debug.Log("SlimeEnemy:" + lives.ToString());
+        Debug.Log("SlimeEnemy:" + lives);
+
+        if (lives < 1)
+        {
+            Die();
+        }
     }
 
-    public enum States
+    public override void Die()
     {
-        idle,
-        death
+       _collider.isTrigger = true;
+       _animator.SetTrigger("death");
     }
+
 }

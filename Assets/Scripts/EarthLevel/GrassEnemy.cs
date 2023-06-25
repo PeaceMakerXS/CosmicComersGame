@@ -4,46 +4,37 @@ using UnityEngine;
 
 public class GrassEnemy : JumpingEnemy
 {
-    private Animator anim;
-
-    private States State
-    {
-        get { return (States)anim.GetInteger("state"); }
-        set { anim.SetInteger("state", (int)value); }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        anim = GetComponent<Animator>();
-    }
+    private Animator _animator;
+    private Collider2D _collider;
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
+        _collider = GetComponent<Collider2D>();
         jumpforce = 3f;
         lives = 2;
     }
 
+    protected override void FixedUpdate()
+    {
+        if (lives > 0)
+        {
+            CheckGround();
+        }
+    }
+
     protected override void Update()
     {
-        base.Update();
-
-        if (IsGrounded)
+        if (lives > 0 && IsGrounded)
         {
-            State = States.idle;
+            Jump();
         }
 
-        if (lives == 0)
-        {
-            State = States.death;
-            Invoke("Die", 1);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (lives > 0 && collision.gameObject.CompareTag("Player"))
         {
             GetDamage();
         }
@@ -52,23 +43,18 @@ public class GrassEnemy : JumpingEnemy
     public override void GetDamage()
     {
         lives--;
-        Debug.Log("GrassEnemy:" + lives.ToString());
-    }
+        Debug.Log("GrassEnemy:" + lives);
 
-    protected override void CheckGround()
-    {
-        base.CheckGround();
-
-        if (!IsGrounded)
+        if (lives < 1)
         {
-            State = States.jump;
+            Die();
         }
     }
 
-    public enum States
+    public override void Die()
     {
-        idle,
-        jump,
-        death
+        _collider.isTrigger = true;
+        _animator.SetTrigger("death");
     }
+
 }

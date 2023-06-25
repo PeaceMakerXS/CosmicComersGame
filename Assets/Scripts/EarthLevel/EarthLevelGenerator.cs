@@ -14,16 +14,16 @@ public class EarthLevelGenerator : MonoBehaviour
     public List<GameObject> EnemyVariants = new();
     public List<GameObject> OtherObjectsVariants = new();
 
-    [SerializeField] private float firstHeightLevel;
-    [SerializeField] private float secondHeightLevel;
-    [SerializeField] private float maxHeightLevelOffset;
+    private float firstHeightLevel;
+    private float secondHeightLevel;
+    private float maxHeightLevelOffset;
 
-    [SerializeField] private float minXOffset_firstHeightLevel;
-    [SerializeField] private float maxXOffset_firstHeightLevel;
-    [SerializeField] private float minXOffset_secondHeightLevel;
-    [SerializeField] private float maxXOffset_secondHeightLevel;
+    private float minXOffset_firstHeightLevel;
+    private float maxXOffset_firstHeightLevel;
+    private float minXOffset_secondHeightLevel;
+    private float maxXOffset_secondHeightLevel;
 
-    [SerializeField] private int firstCellsPerLevelCount;
+    private int firstCellsPerLevelCount;
 
     private float currentX_firstHeightLevel;
     private float currentX_secondHeightLevel;
@@ -49,12 +49,12 @@ public class EarthLevelGenerator : MonoBehaviour
     {
         firstHeightLevel = -2.5f;
         secondHeightLevel = 2f;
-        maxHeightLevelOffset = 0.7f;
+        maxHeightLevelOffset = 0.5f;
 
         minXOffset_firstHeightLevel = 0.5f;
         maxXOffset_firstHeightLevel = 2.5f;
         minXOffset_secondHeightLevel = 1.5f;
-        maxXOffset_secondHeightLevel = 3.7f;
+        maxXOffset_secondHeightLevel = 5f;
 
         firstCellsPerLevelCount = 5;
 
@@ -153,31 +153,34 @@ public class EarthLevelGenerator : MonoBehaviour
 
     private void CleanAndRecreateObjects()
     {
-        if (enemies[0])
+        if (DanilHero.Instance)
         {
-            if (DanilHero.Instance.transform.position.x > enemies[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+            if (enemies[0])
             {
-                Destroy(enemies[0]);
-                enemies.RemoveAt(0);
+                if (DanilHero.Instance.transform.position.x > enemies[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+                {
+                    Destroy(enemies[0]);
+                    enemies.RemoveAt(0);
+                }
             }
-        }
 
-        if (otherObjects[0])
-        {
-            if (DanilHero.Instance.transform.position.x > otherObjects[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+            if (otherObjects[0])
             {
-                Destroy(otherObjects[0]);
-                otherObjects.RemoveAt(0);
+                if (DanilHero.Instance.transform.position.x > otherObjects[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+                {
+                    Destroy(otherObjects[0]);
+                    otherObjects.RemoveAt(0);
+                }
             }
-        }
 
-        if (cells[0])
-        {
-            if (DanilHero.Instance.transform.position.x > cells[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+            if (cells[0])
             {
-                Destroy(cells[0]);
-                cells.RemoveAt(0);
-                GenerateHeightLevels();
+                if (DanilHero.Instance.transform.position.x > cells[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+                {
+                    Destroy(cells[0]);
+                    cells.RemoveAt(0);
+                    GenerateHeightLevels();
+                }
             }
         }
     }
