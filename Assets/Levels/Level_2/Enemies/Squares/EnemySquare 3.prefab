@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdba5436f6464bf468549516d58e62ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpforce: 13
+  jumpforce: 10
   lives: 3
 --- !u!1 &6268396560765893696
 GameObject:
