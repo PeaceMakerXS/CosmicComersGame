@@ -95,11 +95,10 @@ GameObject:
   - component: {fileID: 1753288220701568572}
   - component: {fileID: 6959269384644710794}
   - component: {fileID: 1263052413077233743}
-  - component: {fileID: 8387773542214940230}
-  - component: {fileID: 5563645819560916857}
+  - component: {fileID: 3448391048437124548}
   m_Layer: 0
   m_Name: EnemySquare 2
-  m_TagString: Enemy
+  m_TagString: Square
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 1753288219248102508}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6959269384644710794
 BoxCollider2D:
@@ -192,7 +191,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8387773542214940230
+--- !u!114 &3448391048437124548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,22 +200,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753288220701568575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2e281cf652c1645a821497f16add47, type: 3}
+  m_Script: {fileID: 11500000, guid: cdba5436f6464bf468549516d58e62ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpforce: 9
-  lives: 3
---- !u!114 &5563645819560916857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1753288220701568575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb2e281cf652c1645a821497f16add47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpforce: 9
+  jumpforce: 10
   lives: 3

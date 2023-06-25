@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Island
+  - Spike
+  - Barrel
+  - Square
   layers:
   - Default
   - TransparentFX

@@ -32,17 +32,16 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        pos = player.position;
-        if (currentScene.name == "MoonLevel")
+        if (player)
         {
-            pos.x = player.position.x + 9f;
-        }
-        else if (currentScene.name=="SunLevel")
-        {
-            pos.y = 0;
-        }
-        pos.z = -10f;
+            pos = player.position;
+            if (currentScene.name == "MoonLevel")
+            {
+                pos.x = player.position.x + 9f;
+            }
+            pos.z = -10f;
 
-        transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime);
+        }
     }
 }

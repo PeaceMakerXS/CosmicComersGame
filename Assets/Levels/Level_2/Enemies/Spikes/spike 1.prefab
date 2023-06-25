@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3900657993845262403}
   - component: {fileID: 7177300338584742935}
   - component: {fileID: 5490456612647874573}
-  - component: {fileID: 2853418707161408258}
+  - component: {fileID: 9201257718623115063}
   m_Layer: 0
   m_Name: spike 1
-  m_TagString: Enemy
+  m_TagString: Spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2853418707161408258
+--- !u!114 &9201257718623115063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,6 +168,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3900657993845262401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc64256fed296f4e89f02c9f24cde69, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d02fd81d27b09c46b8a67b670ac4f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
