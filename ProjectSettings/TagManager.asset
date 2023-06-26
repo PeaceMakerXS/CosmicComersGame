@@ -9,6 +9,7 @@ TagManager:
   - Spike
   - Barrel
   - Square
+  - Obstacle
   layers:
   - Default
   - TransparentFX
