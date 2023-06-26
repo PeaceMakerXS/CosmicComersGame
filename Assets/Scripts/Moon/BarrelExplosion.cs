@@ -30,7 +30,6 @@ public class BarrelExplosion : Entity
         if (collision.gameObject == Hero.Instance.gameObject)
         {
             Invoke("Boom", 2);
-            Debug.Log("вот и пришел тот час...");
         }
     }
 
@@ -39,7 +38,6 @@ public class BarrelExplosion : Entity
         if (Mathf.Abs(hero.transform.position.x - barrel.transform.position.x) < 5)
         {
             Hero.Instance.GetDamage();
-            Debug.Log("вот и пришел тот час 2...");
         }
 
         for (int i = 0; i< Squares.Length; i++)
