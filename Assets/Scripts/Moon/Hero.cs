@@ -44,7 +44,7 @@ public class Hero : Entity
                     GetDamage();
 
                 }
-                if (square.transform.position.x > transform.position.x)
+                if (square.transform.position.x > transform.position.x + 1)
                 {
                     Debug.Log("baccck");
                     startPos = transform.position;
