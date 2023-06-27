@@ -32,7 +32,7 @@ public class Weapon : Entity
     {
         foreach (GameObject weapon in Weapons)
         {
-            if (collision.gameObject.CompareTag("Square") && collision.gameObject == weapon)
+            if (collision.gameObject.CompareTag("Square") && collision.gameObject.CompareTag("Suricsan"))
             {
                 Debug.Log("Удаляем))))))))))");
                 Destroy(weapon);
