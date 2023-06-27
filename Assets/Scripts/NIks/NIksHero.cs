@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class NIksHero : MonoBehaviour
 {
+
+    public float invincibilityDuration = 2f; // Длительность неуязвимости после столкновения с препятствием
+    public float blinkInterval = 0.2f; // Интервал между миганиями
+
+    private bool isInvincible = false; // Флаг, указывающий, находится ли игрок в состоянии неуязвимости
+    private bool canPassThroughObstacles = false; // Флаг, указывающий, может ли игрок пролетать сквозь препятствия
+    private Renderer playerRenderer; // Компонент Renderer игрока   
+
     public float speed = 10f; // Скорость движения самолетика
     public float speed2 = 10f;
     private float minY; 
@@ -16,12 +24,55 @@ public class NIksHero : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         minY = -4f;
         maxY = 4f;
+
+        playerRenderer = GetComponent<Renderer>();
     }
 
-    private void Awake()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-            
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            if (!isInvincible)
+            {
+                StartCoroutine(BlinkingRoutine());
+                StartCoroutine(InvincibilityRoutine());
+                StartCoroutine(PassThroughObstaclesRoutine());
+            }
+        }
     }
+
+    private IEnumerator BlinkingRoutine()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < invincibilityDuration)
+        {
+            playerRenderer.enabled = !playerRenderer.enabled;
+            yield return new WaitForSeconds(blinkInterval);
+            elapsedTime += blinkInterval;
+        }
+
+        playerRenderer.enabled = true; // Включаем отображение игрока после окончания мигания
+    }
+
+    private IEnumerator InvincibilityRoutine()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityDuration);
+
+        isInvincible = false;
+    }
+
+    private IEnumerator PassThroughObstaclesRoutine()
+    {
+        canPassThroughObstacles = true;
+
+        yield return new WaitForSeconds(invincibilityDuration);
+
+        canPassThroughObstacles = false;
+    }
+
 
     private void Update()
     {
