@@ -7,13 +7,20 @@ public class SquareEnemy : JumpingEnemy
     int k = 0;
     bool littlejump = false;
     private GameObject player;
-
     [SerializeField] float MoveSpeed = 23f;
+    new int lives = 1;
 
+    public static JumpingEnemy Instance { get; set; }
+
+    Suricsan suricsan;
     private void Start()
     {
+        Instance = this;
+
         player = GameObject.FindGameObjectWithTag("Player");
+        suricsan = FindAnyObjectByType<Suricsan>();
     }
+
     protected override void Update()
     {
         base.Update();
@@ -38,21 +45,24 @@ public class SquareEnemy : JumpingEnemy
                 k = 0;
             }
         }
+
+        if (lives == 0) { Die(); }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Suricsan")) 
+        { 
+            lives -= suricsan.damage; 
+        }
         if (collision.gameObject.CompareTag("Player"))
         {
             if (transform.position.x > player.transform.position.x+1)
                 StartCoroutine(Move());
-        }
-
-        
+        }               
     }
     private IEnumerator Move()
     {
-        Debug.Log("NO_Yes");
         Vector3 startPos = transform.position;
         Vector3 endPos = startPos + transform.right * 3;
 
@@ -66,5 +76,4 @@ public class SquareEnemy : JumpingEnemy
             yield return null;
         }
     }
-    
 }

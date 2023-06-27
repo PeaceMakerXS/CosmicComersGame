@@ -24,6 +24,8 @@ public class Hero : Entity
 
     private GameObject[] Squares;
 
+    public Weapon gun;
+
     private CosmicStaes State
     {
         get { return (CosmicStaes)anim.GetInteger("state"); }
@@ -40,18 +42,23 @@ public class Hero : Entity
             {
                 if (square.transform.position.y > transform.position.y)
                 {
-                    Debug.Log("worrrrrrrk");
                     GetDamage();
 
                 }
                 if (square.transform.position.x > transform.position.x + 1)
                 {
-                    Debug.Log("baccck");
                     startPos = transform.position;
                     endPos = startPos - transform.right * 2;
                     StartCoroutine(Move(startPos, endPos));
                 }
             }
+        }
+
+        if (collision.gameObject.CompareTag("Barrel"))
+        {
+            startPos = transform.position;
+            endPos = startPos - transform.right * 2;
+            StartCoroutine(Move(startPos, endPos));
         }
     }
 
@@ -66,6 +73,7 @@ public class Hero : Entity
     private void FixedUpdate()
     {
         Squares = GameObject.FindGameObjectsWithTag("Square");
+        gun = FindAnyObjectByType<Weapon>();
         CheckGround();
     }
 
@@ -86,6 +94,7 @@ public class Hero : Entity
             endPos = startPos + transform.right * 3;
 
             StartCoroutine(Move(startPos, endPos));
+            gun.Shoot();
         }
 
         //death
@@ -128,7 +137,6 @@ public class Hero : Entity
     public override void GetDamage()
     {
         lives --;
-        Debug.Log(lives);
     }
 }
 

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4210132818854006289}
   m_Layer: 0
   m_Name: barrel
-  m_TagString: Enemy
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   hero: {fileID: 0}
   barrel: {fileID: 5947950291561641062}
   Explosion: {fileID: 8547267643658486168, guid: 8f0207d88f6ef064386f7321b8bb923b, type: 3}
-  explousionParent: {fileID: 0}
+  explousionParent: {fileID: 3450531663759373575, guid: 6d230804185a4d5479de741117e16b78, type: 3}
 --- !u!95 &7146318562537188167
 Animator:
   serializedVersion: 5
