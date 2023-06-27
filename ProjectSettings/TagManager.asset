@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Obstacle
+  - Coin
+  - Enemy
+  - GravitationSuite
+  - Suricsan
+  - Island
+  - Square
+  - Spike
+  - Undefined
+  - Barrel
+  - Explosion
   layers:
   - Default
   - TransparentFX

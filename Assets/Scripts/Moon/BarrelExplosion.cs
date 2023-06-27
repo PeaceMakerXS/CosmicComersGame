@@ -10,7 +10,7 @@ public class BarrelExplosion : Entity
 
     public GameObject Explosion;
     public Transform explousionParent;
-    private List<GameObject> Explosions = new List<GameObject>();
+    private GameObject[] Explosions;
      private GameObject explosionRef;
 
     private GameObject[] Squares;
@@ -25,6 +25,8 @@ public class BarrelExplosion : Entity
     private void Update()
     {
         Squares = GameObject.FindGameObjectsWithTag("Square");
+        Explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        CheckExpl();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -55,19 +57,15 @@ public class BarrelExplosion : Entity
 
         explosionRef = Instantiate(Explosion,explousionParent);
         explosionRef.transform.localPosition = new Vector3(barrel.transform.position.x, barrel.transform.position.y, barrel.transform.position.z);
-        Explosions.Add(explosionRef); //они не добавл€ютс€????
-        Debug.Log(Explosions.Count);
+        Debug.Log(Explosions.Length);
         Destroy(this.gameObject);
-        CheckExpl();
     }
 
     private void CheckExpl()
     {
-        if(Explosions.Count>1)
+        if(Explosions.Length >1)
         {
-            Debug.Log("ну должно!");
             Destroy(Explosions[0]);
-            Explosions.RemoveAt(0);
         }
     }
 }
