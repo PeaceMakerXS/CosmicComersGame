@@ -19,14 +19,6 @@ public class SnakeEnemy : Entity
         _collider = GetComponent<Collider2D>();
     }
 
-    protected void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (lives > 0 && collision.gameObject.CompareTag("Player"))
-        {
-            GetDamage();
-        }
-    }
-
     public override void Die()
     {
         _collider.isTrigger = true;

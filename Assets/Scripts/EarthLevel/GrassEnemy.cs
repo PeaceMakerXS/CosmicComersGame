@@ -33,21 +33,13 @@ public class GrassEnemy : JumpingEnemy
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (lives > 0 && collision.gameObject.CompareTag("Player"))
-        {
-            GetDamage();
-        }
-    }
-
     private IEnumerator OnHit()
     {
         sprite.color = new Color(EarthLevelConstants.EnemyHitColors.GrassBlock.firstColor,
             EarthLevelConstants.EnemyHitColors.GrassBlock.secondColor,
             EarthLevelConstants.EnemyHitColors.GrassBlock.thirdColor);
         yield return new WaitForSeconds(0.3f);
-        sprite.color = new Color(1f, 1f, 1f);
+        sprite.color = Color.white;
     }
 
     public override void GetDamage()

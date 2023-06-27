@@ -28,6 +28,6 @@ public class SnakeSlimeEnemy : SnakeEnemy
             EarthLevelConstants.EnemyHitColors.SnakeSlime.secondColor,
             EarthLevelConstants.EnemyHitColors.SnakeSlime.thirdColor);
         yield return new WaitForSeconds(0.3f);
-        sprite.color = new Color(1f, 1f, 1f);
+        sprite.color = Color.white;
     }
 }

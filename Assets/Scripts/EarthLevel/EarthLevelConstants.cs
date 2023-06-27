@@ -1,5 +1,23 @@
 public static class EarthLevelConstants
 {
+    public struct Player
+    {
+        public const int initialHealth = 1000;
+        public const float initialSpeed = 4.5f;
+        public const float initialJumpForce = 7f;
+        public const float initialAttackRange = 1.5f;
+        public const float initialAttackCoolDown = 0.8f;
+
+        public const float attackAnimationDuration = 0.7f;
+
+        public struct HitColors
+        {
+            public const float firstColor = 0.6132f;
+            public const float secondColor = 0.418f;
+            public const float thirdColor = 0.414f;
+        }
+    }
+
     public struct EnemyHitColors
     {
         public struct GrassBlock

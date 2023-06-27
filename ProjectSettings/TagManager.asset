@@ -4,17 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - GravitationSuite
   - Enemy
   - Island
-  - Spike
-  - Barrel
-  - Square
-  - Obstacle
+  - Coin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

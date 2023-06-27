@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class SlimeEnemy : JumpingEnemy
@@ -32,21 +31,13 @@ public class SlimeEnemy : JumpingEnemy
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (lives > 0 && collision.gameObject.CompareTag("Player"))
-        {
-            GetDamage();
-        }
-    }
-
     private IEnumerator OnHit()
     {
         sprite.color = new Color(EarthLevelConstants.EnemyHitColors.SlimeBlock.firstColor,
             EarthLevelConstants.EnemyHitColors.SlimeBlock.secondColor,
             EarthLevelConstants.EnemyHitColors.SlimeBlock.thirdColor);
         yield return new WaitForSeconds(0.3f);
-        sprite.color = new Color(1f, 1f, 1f);
+        sprite.color = Color.white;
     }
 
     public override void GetDamage()

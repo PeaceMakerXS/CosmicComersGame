@@ -29,6 +29,6 @@ public class SnakeLavaEnemy : SnakeEnemy
             EarthLevelConstants.EnemyHitColors.SnakeLava.secondColor,
             EarthLevelConstants.EnemyHitColors.SnakeLava.thirdColor);
         yield return new WaitForSeconds(0.3f);
-        sprite.color = new Color(1f, 1f, 1f);
+        sprite.color = Color.white;
     }
 }

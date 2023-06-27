@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7398810961999327004}
   - component: {fileID: 132830749174795977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 97ecfc993d7dbca41893b0c6efa727c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5194072862892315727}
   - component: {fileID: 8533888720939097023}
   - component: {fileID: 8984572223303788011}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SlimeBlockEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

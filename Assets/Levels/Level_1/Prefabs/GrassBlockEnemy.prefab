@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2934195144184085942}
   - component: {fileID: 2677135555138088928}
   - component: {fileID: 2841707099204660366}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassBlockEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 413435043788520778}
   - component: {fileID: 7336207256519264890}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 7aadfeab69bb2324b9f3bd3797c8f4f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -17,7 +17,7 @@ public class FlyingFollowEnemy : Entity
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         lives = 5;
     }
 
@@ -26,21 +26,13 @@ public class FlyingFollowEnemy : Entity
         Move();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (lives > 0 && collision.gameObject.CompareTag("Player"))
-        {
-            GetDamage();
-        }
-    }
-
     private IEnumerator OnHit()
     {
         sprite.color = new Color(EarthLevelConstants.EnemyHitColors.Bee.firstColor,
             EarthLevelConstants.EnemyHitColors.Bee.secondColor,
             EarthLevelConstants.EnemyHitColors.Bee.thirdColor);
         yield return new WaitForSeconds(0.3f);
-        sprite.color = new Color(1f, 1f, 1f);
+        sprite.color = Color.white;
     }
 
     private void Move()
