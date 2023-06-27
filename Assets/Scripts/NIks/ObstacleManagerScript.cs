@@ -66,6 +66,16 @@ public class ObstacleManagerScript : MonoBehaviour
             Vector2 spawnPosition = new Vector2(spawnX, -2.3f);
             GameObject obstacle = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
         }
+            else if ((randomPrefab == obstaclePrefabs[4]) && (randomPrefabDown != obstaclePrefabsDown[2]) && (randomPrefabDown != obstaclePrefabsDown[3])) 
+        {
+            Vector2 spawnPosition = new Vector2(spawnX, 2.75f);
+            GameObject obstacle = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
+        }
+            else if ((randomPrefab == obstaclePrefabs[5]) && (randomPrefabDown != obstaclePrefabsDown[2]) && (randomPrefabDown != obstaclePrefabsDown[3]))
+        {
+            Vector2 spawnPosition = new Vector2(spawnX, 2.75f);
+            GameObject obstacle = Instantiate(randomPrefab, spawnPosition, Quaternion.identity);
+        }
 
 ////////////////////////////////////////////Down///////////////////////////////////////////////////////////
         
@@ -85,6 +95,21 @@ public class ObstacleManagerScript : MonoBehaviour
             GameObject obstacle = Instantiate(randomPrefabDown, spawnPosition, Quaternion.identity);
         }
         else if (randomPrefabDown == obstaclePrefabsDown[3])
+        {
+            Vector2 spawnPosition = new Vector2(spawnX, -4f);
+            GameObject obstacle = Instantiate(randomPrefabDown, spawnPosition, Quaternion.identity);
+        }
+        else if (randomPrefabDown == obstaclePrefabsDown[4])
+        {
+            Vector2 spawnPosition = new Vector2(spawnX, -4f);
+            GameObject obstacle = Instantiate(randomPrefabDown, spawnPosition, Quaternion.identity);
+        }
+        else if (randomPrefabDown == obstaclePrefabsDown[5])
+        {
+            Vector2 spawnPosition = new Vector2(spawnX, -4f);
+            GameObject obstacle = Instantiate(randomPrefabDown, spawnPosition, Quaternion.identity);
+        }
+        else if (randomPrefabDown == obstaclePrefabsDown[6])
         {
             Vector2 spawnPosition = new Vector2(spawnX, -4f);
             GameObject obstacle = Instantiate(randomPrefabDown, spawnPosition, Quaternion.identity);
