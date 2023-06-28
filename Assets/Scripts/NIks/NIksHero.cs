@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NIksHero : MonoBehaviour
 {
-
+    private EdgeCollider2D edgeCollider;
 
     public float invincibilityDuration = 2f; // Длительность неуязвимости после столкновения с препятствием
     public float blinkInterval = 0.2f; // Интервал между миганиями
@@ -28,6 +28,8 @@ public class NIksHero : MonoBehaviour
         maxY = 4f;
 
         playerRenderer = GetComponent<Renderer>();
+        // Получаем ссылку на компонент Edge Collider 2D на объекте игрока
+        edgeCollider = GetComponent<EdgeCollider2D>();
     }
 
 
@@ -43,6 +45,7 @@ public class NIksHero : MonoBehaviour
                 StartCoroutine(BlinkingRoutine());
                 StartCoroutine(InvincibilityRoutine());
                 StartCoroutine(PassThroughObstaclesRoutine());
+                edgeCollider.enabled = false;
             }
         }
     }
@@ -63,11 +66,11 @@ public class NIksHero : MonoBehaviour
 
     private IEnumerator InvincibilityRoutine()
     {
-        isInvincible = true;
+        
 
         yield return new WaitForSeconds(invincibilityDuration);
-
-        isInvincible = false;
+        edgeCollider.enabled = true;
+        
     }
 
     private IEnumerator PassThroughObstaclesRoutine()
