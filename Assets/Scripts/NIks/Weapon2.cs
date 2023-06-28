@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Entity
+public class Weapon2 : Entity
 {
     public GameObject[] Bullets;
     public Transform shotPoint;
@@ -22,7 +22,7 @@ public class Weapon : Entity
             {
                 if (weapon)
                 {
-                    if (NIksHero.Instance.transform.position.x < weapon.transform.position.x - 10f)
+                    if (NIksHero.Instance.transform.position.x < weapon.transform.position.x - 15f)
                     {
                         Destroy(weapon);
                         Weapons.Remove(weapon);

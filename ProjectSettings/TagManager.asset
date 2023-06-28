@@ -15,6 +15,9 @@ TagManager:
   - Undefined
   - Barrel
   - Explosion
+  - Bullet
+  - BulletHero
+  - HeroBullet
   layers:
   - Default
   - TransparentFX

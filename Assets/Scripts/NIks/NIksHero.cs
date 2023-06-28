@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class NIksHero : MonoBehaviour
 {
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private Sprite aliveHeart;
+    [SerializeField] private Sprite deadHeart;
+    [SerializeField] private float health;
+    [SerializeField] private float lives;
+
+    [SerializeField] private GameObject losePanel;
+
     private EdgeCollider2D edgeCollider;
+    private Weapon2 govno;
+    public static NIksHero Instance { get; set;}
 
     public float invincibilityDuration = 2f; // Длительность неуязвимости после столкновения с препятствием
     public float blinkInterval = 0.2f; // Интервал между миганиями
@@ -21,6 +31,8 @@ public class NIksHero : MonoBehaviour
 
     private Rigidbody2D rb;
 
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,16 +42,57 @@ public class NIksHero : MonoBehaviour
         playerRenderer = GetComponent<Renderer>();
         // Получаем ссылку на компонент Edge Collider 2D на объекте игрока
         edgeCollider = GetComponent<EdgeCollider2D>();
+        govno = FindAnyObjectByType<Weapon2>();
     }
 
 
+    private void Awake()
+    {
+        Instance = this;
+        lives = 3;
+        health = lives;
+        
+        losePanel.SetActive(false);
 
+
+
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        Debug.Log(collision.gameObject.CompareTag("Bullet"));
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.tag == "Bullet")
         {
+            health--;
+            lives--;
+            // Логика, когда самолетик сталкивается с врагом
+            Debug.Log("Самолетик столкнулся с врагом!");
+            if (health < 0)
+            {
+                health = 0;
+                // Здесь можно вызвать метод для завершения игры
+                // gameManager.EndGame();
+            }
+            if(health == 0)
+            {
+                losePanel.SetActive(true);
+                Time.timeScale = 0;
+            }
+
+            for (int i =0; i < hearts.Length; i++)
+            {
+                if (i < health)
+                    hearts[i].sprite = aliveHeart;
+                else
+                    hearts[i].sprite = deadHeart;
+
+                if (i < lives)
+                    hearts[i].enabled = true;
+                else
+                    hearts[i].enabled = false;
+            }   
+
             if (!isInvincible)
             {
                 StartCoroutine(BlinkingRoutine());
@@ -85,6 +138,13 @@ public class NIksHero : MonoBehaviour
 
     private void Update()
     {
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            govno.Shoot(); // Вызываем метод стрельбы
+        }
+
         // Получаем ввод от пользователя по горизонтали и вертикали
         //float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");

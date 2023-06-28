@@ -132,6 +132,7 @@ public class ObstacleManagerScript : MonoBehaviour
     }
 }
 /*
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -306,4 +307,5 @@ public class ObstacleManagerScript : MonoBehaviour
         timer = 0f; // Сбрасываем таймер
     }
 }
+
 */

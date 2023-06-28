@@ -11,12 +11,12 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float lives;
 
-    private GameOver gameManager;
+    //private GameOver gameManager;
 
     private void Start()
     {
         // Получаем ссылку на GameManagerScript
-        gameManager = GameObject.Find("GameManager").GetComponent<GameOver>();
+        //gameManager = GameObject.Find("GameManager").GetComponent<GameOver>();
     }
 
     private void Awake()
@@ -27,7 +27,8 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        Debug.Log(collision.gameObject.CompareTag("Bullet"));
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Bullet"))
         {
             health--;
             lives--;
