@@ -93,7 +93,7 @@ public class Hero : Entity
 
         intr = FindObjectOfType<UI_Button>();
 
-        lives = 100;
+        lives = 5;
         health = lives;
 
         Instance = this;
