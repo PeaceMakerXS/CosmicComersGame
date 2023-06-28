@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Hero : Entity
 {
-    [SerializeField] private int lives = 3;
+    [SerializeField] private int herolives;
     [SerializeField] private float jumpforce = 10f;
     private bool IsGrounded = false;
 
@@ -28,6 +28,7 @@ public class Hero : Entity
     private GameObject[] Squares;
 
     public Weapon gun;
+    private DynamicGeneration obj;
 
     private CosmicStaes State
     {
@@ -65,6 +66,15 @@ public class Hero : Entity
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Star"))
+        {
+            Destroy(collision.gameObject);
+            obj.stars_amount++;
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -82,6 +92,7 @@ public class Hero : Entity
 
     private void Update()
     {
+        obj = FindObjectOfType<DynamicGeneration>();
         if (!dead)
         {
             if (!IsGrounded && !isMoving)
@@ -137,10 +148,10 @@ public class Hero : Entity
     }
     public void GetDamage()
     {
-        lives --;
-        Debug.Log(lives);
+        herolives--;
+        Debug.Log(herolives);
         if (!dead) { StartCoroutine(GetHit()); }
-        if (lives <= 0)
+        if (herolives <= 0)
         {
             dead= true;
             State = CosmicStaes.dead;

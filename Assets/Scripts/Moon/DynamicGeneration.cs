@@ -36,6 +36,18 @@ public class DynamicGeneration : MonoBehaviour
     public Transform barrelParent;
     private List<GameObject> Barrels = new List<GameObject>();
 
+    //stars
+    public GameObject Star;
+    public Transform StarParent;
+    public int stars_amount = 0;
+
+    //details
+    public List<GameObject> Details_toc = new List<GameObject>();
+    private int details_amount = 0;
+
+    private GameObject[] Stars;
+    private GameObject[] Details;
+
     private void Start()
     {
         Ran();
@@ -43,7 +55,10 @@ public class DynamicGeneration : MonoBehaviour
     }
 
     private void Update()
-    {   
+    {
+        Stars = GameObject.FindGameObjectsWithTag("Star");
+        Details = GameObject.FindGameObjectsWithTag("Detail");
+
         if (Hero.Instance!= null)
         {
             if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
@@ -105,7 +120,24 @@ public class DynamicGeneration : MonoBehaviour
 
         switch (situation)
         {
-            case 0: //ничего 
+            case 0: //звезды 
+                int stars_q = Random.Range(0, 5);
+                for (int i = 0; i <= stars_q; i++)
+                {
+                    var star = Instantiate(Star, StarParent);
+                    star.transform.localPosition = new Vector3(x, y, 0);
+                    x++;
+                }
+                if (stars_amount>=10)
+                {
+                    if (Details_toc.Count> 0)
+                    {
+                        int random_detail = Random.Range(0, Details_toc.Count);
+                        var detail = Instantiate(Details_toc[random_detail], StarParent);
+                        detail.transform.localPosition = new Vector3(x, y, 0);
+                        Details_toc.Remove(detail);
+                    }
+                }
                 break;
             case 1: //квадраты
                 random_square_borl = Random.Range(0, 11); //большой или м маленький
@@ -180,7 +212,9 @@ public class DynamicGeneration : MonoBehaviour
 
     private void GenerateLittleSquare(float x)
     {
+        Debug.Log(Square);
         var square = Instantiate(Square, squaresParent);
+        Debug.Log(square);
         square.transform.localPosition = new Vector3(x, y + 1, 0);
         Squares.Add(square);
     }

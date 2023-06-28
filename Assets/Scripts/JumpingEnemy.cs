@@ -29,8 +29,6 @@ public class JumpingEnemy : Entity
     {
         if (IsGrounded)
             Jump();
-        if (lives == 0)
-            Die();
     }
 
     protected void Jump()

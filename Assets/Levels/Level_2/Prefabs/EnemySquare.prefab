@@ -120,10 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpforce: 10
-  lives: 3
   MoveSpeed: 23
   Explosion: {fileID: 4570133511218820624, guid: 6e1c075de31341b47bc6f1988967b618, type: 3}
-  explousionParent: {fileID: 0}
 --- !u!1 &5045548206367798171
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +194,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 584e4970518d36546b374e1108ef97c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

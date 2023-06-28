@@ -9,15 +9,15 @@ public class SquareEnemy : JumpingEnemy
     bool littlejump = false;
     private GameObject player;
     [SerializeField] float MoveSpeed = 23f;
-    new int lives = 2;
     public static JumpingEnemy Instance { get; set; }
 
     public GameObject Explosion;
-    private GameObject[] Explosions;
 
     Suricsan suricsan;
     private void Start()
     {
+        lives = 2;
+
         Instance = this;
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,7 +26,6 @@ public class SquareEnemy : JumpingEnemy
     protected override void Update()
     {
         base.Update();
-        Explosions = GameObject.FindGameObjectsWithTag("Explosion");
         suricsan = FindAnyObjectByType<Suricsan>();
 
         if (IsGrounded && !littlejump)
@@ -50,8 +49,8 @@ public class SquareEnemy : JumpingEnemy
             }
         }
 
-        if (lives == 0) 
-        { 
+        if (lives <= 0) 
+        {
             Die();
             var explosionRef = Instantiate(Explosion);
             explosionRef.transform.localPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -71,7 +70,7 @@ public class SquareEnemy : JumpingEnemy
         if (collision.CompareTag("Suricsan"))
         {
             Destroy(collision.gameObject);
-            lives-= suricsan.damage;
+            lives -= suricsan.damage;
             StartCoroutine(GetHit());
         }
     }
