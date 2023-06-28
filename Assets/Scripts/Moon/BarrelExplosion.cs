@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class BarrelExplosion : Entity
 {
     public Transform hero;
     public GameObject barrel;
+    private SpriteRenderer sprite;
 
     public GameObject Explosion;
     public GameObject SquareExplosion;
@@ -17,6 +19,7 @@ public class BarrelExplosion : Entity
 
     private void Awake()
     {
+        sprite = GetComponent<SpriteRenderer>();
         if (!hero)
             hero = FindObjectOfType<Hero>().transform;
     }
@@ -33,11 +36,15 @@ public class BarrelExplosion : Entity
         {
             Invoke("Boom", 1);
         }
-        if (collision.gameObject.CompareTag("Suricsan"))
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Suricsan"))
         {
-            Invoke("Boom", 2);
+            Destroy(collision.gameObject);
+            StartCoroutine(GetHit());
+            Invoke("Boom", 1);
         }
-
     }
 
     void Boom()
@@ -52,8 +59,9 @@ public class BarrelExplosion : Entity
             {
                 if (Mathf.Abs(Squares[i].transform.position.x - barrel.transform.position.x) < 5)
                 {
+                    var expl = Instantiate(SquareExplosion);
+                    expl.transform.localPosition = new Vector3(Squares[i].transform.position.x, Squares[i].transform.position.y, 0);
                     Destroy(Squares[i]);
-                    Instantiate(SquareExplosion);
                 }
             }
 
@@ -68,5 +76,12 @@ public class BarrelExplosion : Entity
         {
             Destroy(Explosions[0]);
         }
+    }
+
+    private IEnumerator GetHit()
+    {
+        sprite.color = Color.magenta;
+        yield return new WaitForSeconds(0.1f);
+        sprite.color = Color.white;
     }
 }

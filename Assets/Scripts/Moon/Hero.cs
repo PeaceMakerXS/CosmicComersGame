@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class Hero : Entity
@@ -10,6 +11,7 @@ public class Hero : Entity
     private bool IsGrounded = false;
 
     public int score = 0;
+    bool dead = false;
 
     private bool isMoving = false;
     [SerializeField] float MoveSpeed = 23f;
@@ -18,6 +20,7 @@ public class Hero : Entity
     Vector3 endPos;
 
     private Rigidbody2D rb;
+    public SpriteRenderer sprite;
     private Animator anim;
 
     public static Hero Instance { get; set;}
@@ -79,29 +82,28 @@ public class Hero : Entity
 
     private void Update()
     {
-        if (!IsGrounded && !isMoving)
-            State = CosmicStaes.jump;
-
-        if (IsGrounded && !isMoving)
+        if (!dead)
         {
-            State = CosmicStaes.idle;
-            Jump();
-        }
-        if (Input.GetButtonDown("Jump") && !isMoving)
-        {
-            State = CosmicStaes.move;
-            startPos = transform.position;
-            endPos = startPos + transform.right * 3;
+            if (!IsGrounded && !isMoving)
+                State = CosmicStaes.jump;
 
-            StartCoroutine(Move(startPos, endPos));
-            gun.Shoot();
-        }
+            if (IsGrounded && !isMoving)
+            {
+                State = CosmicStaes.idle;
+                Jump();
+            }
+            if (Input.GetButtonDown("Jump") && !isMoving)
+            {
+                State = CosmicStaes.move;
+                startPos = transform.position;
+                endPos = startPos + transform.right * 3;
 
-        //death
-        if (transform.position.y < -100)
-            Die();
-        //if (lives == 0)
-        //    Die();
+                StartCoroutine(Move(startPos, endPos));
+                gun.Shoot();
+            }
+            if (transform.position.y < -100)
+                Die();
+        }
     }
 
     private IEnumerator Move(Vector3 startPos, Vector3 endPos)
@@ -133,16 +135,30 @@ public class Hero : Entity
         Collider2D[] collider = Physics2D.OverlapCircleAll(transform.position, 0.3f);
         IsGrounded = collider.Length > 1;
     }
-
     public override void GetDamage()
     {
         lives --;
+        Debug.Log(lives);
+        if (!dead) { StartCoroutine(GetHit()); }
+        if (lives <= 0)
+        {
+            dead= true;
+            State = CosmicStaes.dead;
+        }
     }
+    private IEnumerator GetHit()
+    {
+        sprite.color = Color.magenta;
+        yield return new WaitForSeconds(0.3f);
+        sprite.color = Color.white;
+    }
+
 }
 
 public enum CosmicStaes
 {
     idle,
     move,
-    jump
+    jump,
+    dead
 }

@@ -18,26 +18,17 @@ public class Weapon : Entity
     {
         if (Weapons.Count > 0)
         {
-            for (int i = 0; i< Weapons.Count; i++)
+            foreach (var weapon in Weapons)
             {
-                if (Hero.Instance.transform.position.x < Weapons[i].transform.position.x - 10f)
+                if (weapon)
                 {
-                    Destroy(Weapons[i]);
-                    Weapons.RemoveAt(i);
+                    if (Hero.Instance.transform.position.x < weapon.transform.position.x - 10f)
+                    {
+                        Destroy(weapon);
+                        Weapons.Remove(weapon);
+                        break;
+                    }
                 }
-            }
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        foreach (GameObject weapon in Weapons) //не считает коллизию
-        {
-            if (collision.gameObject.CompareTag("Square") && collision.gameObject.CompareTag("Suricsan"))
-            {
-                Debug.Log("Удаляем))))))))))");
-                Destroy(weapon);
-                Weapons.Remove(weapon);
-                break;
             }
         }
     }

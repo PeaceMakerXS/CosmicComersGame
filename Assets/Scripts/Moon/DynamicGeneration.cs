@@ -44,34 +44,36 @@ public class DynamicGeneration : MonoBehaviour
 
     private void Update()
     {   
-        if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
+        if (Hero.Instance!= null)
         {
-            Destroy(Cells[0]);
-            Cells.RemoveAt(0);
+            if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
+            {
+                Destroy(Cells[0]);
+                Cells.RemoveAt(0);
 
-            Ran();
+                Ran();
 
-            GenerateNextCell();
-            
-            GenerateEnemies();
-        }
-        if (Spikes.Count > 10)
-        {
-            Destroy(Spikes[0]);
-            Spikes.RemoveAt(0);
-        } 
-        
-        if (Squares.Count > 15)
-        {
-            Destroy(Squares[0]);
-            Squares.RemoveAt(0);
-        }
-        if (Barrels.Count > 10)
-        {
-            Destroy(Barrels[0]);
-            Barrels.RemoveAt(0);
-        }
+                GenerateNextCell();
 
+                GenerateEnemies();
+            }
+            if (Spikes.Count > 10)
+            {
+                Destroy(Spikes[0]);
+                Spikes.RemoveAt(0);
+            }
+
+            if (Squares.Count > 15)
+            {
+                Destroy(Squares[0]);
+                Squares.RemoveAt(0);
+            }
+            if (Barrels.Count > 10)
+            {
+                Destroy(Barrels[0]);
+                Barrels.RemoveAt(0);
+            }
+        }
     }
 
     private void StartGenerate()
