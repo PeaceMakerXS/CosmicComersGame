@@ -49,7 +49,7 @@ public class BarrelExplosion : Entity
 
     void Boom()
     {
-        if (Mathf.Abs(hero.transform.position.x - barrel.transform.position.x) < 5)
+        if (Mathf.Abs(hero.transform.position.x - barrel.transform.position.x) < 3)
         {
             Hero.Instance.GetDamage();
         }

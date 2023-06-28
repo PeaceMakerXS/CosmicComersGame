@@ -57,8 +57,6 @@ public class DynamicGeneration : MonoBehaviour
     {
         Stars = GameObject.FindGameObjectsWithTag("Star");
 
-        Debug.Log(stars_amount);
-
         if (Hero.Instance!= null)
         {
             if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
@@ -260,18 +258,19 @@ public class DynamicGeneration : MonoBehaviour
 
     private void GenerateDetails()
     {
-        if (stars_amount >= 15)
-        {
-            int chance = Random.Range(0, 11);
-            if (chance<=7)
+        if (Details_toc.Count>0)
+            if (stars_amount >= 10)
             {
-                y += Random.Range(0, 2);
-                int random_detail = Random.Range(0, Details_toc.Count);
-                var detail = Instantiate(Details_toc[random_detail], StarParent);
-                detail.transform.localPosition = new Vector3(x, y, 0);
-                Details_toc.RemoveAt(random_detail);
+                int chance = Random.Range(0, 11);
+                if (chance<=9)
+                {
+                    y += Random.Range(0, 2);
+                    int random_detail = Random.Range(0, Details_toc.Count);
+                    var detail = Instantiate(Details_toc[random_detail], StarParent);
+                    detail.transform.localPosition = new Vector3(x, y, 0);
+                    Details_toc.RemoveAt(random_detail);
+                }
             }
-        }
     }
     private void Ran()
     {

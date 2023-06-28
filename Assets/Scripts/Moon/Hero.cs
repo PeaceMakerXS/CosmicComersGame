@@ -29,6 +29,7 @@ public class Hero : Entity
 
     public Weapon gun;
     private DynamicGeneration obj;
+    public UI_Button intr;
 
     [SerializeField] private int health;
     [SerializeField] private Image[] hearts;
@@ -86,10 +87,13 @@ public class Hero : Entity
 
     private void Awake()
     {
+        Time.timeScale = 1;
         rb = GetComponent<Rigidbody2D>();
         anim= GetComponent<Animator>();
 
-        lives = 5;
+        intr = FindObjectOfType<UI_Button>();
+
+        lives = 100;
         health = lives;
 
         Instance = this;
@@ -99,12 +103,17 @@ public class Hero : Entity
     {
         Squares = GameObject.FindGameObjectsWithTag("Square");
         gun = FindAnyObjectByType<Weapon>();
+        obj = FindObjectOfType<DynamicGeneration>();
         CheckGround();
     }
 
     private void Update()
     {
         obj = FindObjectOfType<DynamicGeneration>();
+        if (obj.details_amount == 6)
+        {
+            intr.Lose_Win(2);
+        }
         if (!dead)
         {
             if (!IsGrounded && !isMoving)
@@ -125,7 +134,10 @@ public class Hero : Entity
                 gun.Shoot();
             }
             if (transform.position.y < -100)
+            {
                 Die();
+                intr.Lose_Win(1);
+            }
         }
         if (health > lives)
             health= lives;
@@ -174,12 +186,12 @@ public class Hero : Entity
     public void GetDamage()
     {
         lives--;
-        Debug.Log(lives);
         if (!dead) { StartCoroutine(GetHit()); }
         if (lives <= 0)
         {
             dead= true;
             State = CosmicStaes.dead;
+            intr.Lose_Win(1);
         }
     }
     private IEnumerator GetHit()
