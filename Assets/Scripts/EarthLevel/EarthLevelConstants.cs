@@ -2,7 +2,7 @@ public static class EarthLevelConstants
 {
     public struct Player
     {
-        public const int initialHealth = 30;
+        public const int initialHealth = 40;
         public const float initialSpeed = 4.5f;
         public const float initialJumpForce = 8.5f;
 
@@ -55,6 +55,39 @@ public static class EarthLevelConstants
             public const float firstColor = 0.4609f;
             public const float secondColor = 0.2422f;
             public const float thirdColor = 0.2422f;
+        }
+    }
+
+
+    public struct Generation
+    {
+        public const int cellTypesCount = 3;
+        public const int suitPartsCount = 6;
+        public const float requiredHeroOffset = 20f;
+        public const int neededCoinsForSuitePart = 6;
+
+        public struct SmallCell
+        {
+            public const int maxEnemiesCount = 1;
+            public const int maxOtherObjectsCount = 2;
+            public const int maxObjectsCount = 2;
+            public const float yCorrection = 0.5f;
+        }
+
+        public struct CommonCell
+        {
+            public const int maxEnemiesCount = 2;
+            public const int maxOtherObjectsCount = 2;
+            public const int maxObjectsCount = 3;
+            public const float yCorrection = 0.5f;
+        }
+
+        public struct BigCell
+        {
+            public const int maxEnemiesCount = 4;
+            public const int maxOtherObjectsCount = 3;
+            public const int maxObjectsCount = 4;
+            public const float yCorrection = 0f;
         }
     }
 }

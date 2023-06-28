@@ -110,22 +110,22 @@ public class EarthLevelGenerator : MonoBehaviour
 
     private float GenerateRandomCell(float x, float y)
     {
-        int cellNumber = UnityEngine.Random.Range(0, GenerationConstants.cellTypesCount);
+        int cellNumber = UnityEngine.Random.Range(0, EarthLevelConstants.Generation.cellTypesCount);
         float xChanged = 0;
 
         switch(cellNumber)
         {
             case 0:
-                xChanged = GenerateSmartCell(x, y, GenerationConstants.SmallCell.maxEnemiesCount, GenerationConstants.SmallCell.maxOtherObjectsCount,
-                    GenerationConstants.SmallCell.maxObjectsCount, 0, GenerationConstants.SmallCell.yCorrection);
+                xChanged = GenerateSmartCell(x, y, EarthLevelConstants.Generation.SmallCell.maxEnemiesCount, EarthLevelConstants.Generation.SmallCell.maxOtherObjectsCount,
+                    EarthLevelConstants.Generation.SmallCell.maxObjectsCount, 0, EarthLevelConstants.Generation.SmallCell.yCorrection);
                 break;
             case 1:
-                xChanged = GenerateSmartCell(x, y, GenerationConstants.CommonCell.maxEnemiesCount, GenerationConstants.CommonCell.maxOtherObjectsCount,
-                    GenerationConstants.CommonCell.maxObjectsCount, 1, GenerationConstants.CommonCell.yCorrection);
+                xChanged = GenerateSmartCell(x, y, EarthLevelConstants.Generation.CommonCell.maxEnemiesCount, EarthLevelConstants.Generation.CommonCell.maxOtherObjectsCount,
+                    EarthLevelConstants.Generation.CommonCell.maxObjectsCount, 1, EarthLevelConstants.Generation.CommonCell.yCorrection);
                 break;
             case 2:
-                xChanged = GenerateSmartCell(x, y, GenerationConstants.BigCell.maxEnemiesCount, GenerationConstants.BigCell.maxOtherObjectsCount,
-                    GenerationConstants.BigCell.maxObjectsCount, 2, GenerationConstants.BigCell.yCorrection);
+                xChanged = GenerateSmartCell(x, y, EarthLevelConstants.Generation.BigCell.maxEnemiesCount, EarthLevelConstants.Generation.BigCell.maxOtherObjectsCount,
+                    EarthLevelConstants.Generation.BigCell.maxObjectsCount, 2, EarthLevelConstants.Generation.BigCell.yCorrection);
                 break;
         }
         return xChanged;
@@ -209,7 +209,7 @@ public class EarthLevelGenerator : MonoBehaviour
         cells.Add(cell);
 
         var suitPart = Instantiate(SuitPartsList[suitPartsCollected], OtherObjectsParent);
-        suitPart.transform.position = new Vector3(currentX, currentY + GenerationConstants.SmallCell.yCorrection, 0);
+        suitPart.transform.position = new Vector3(currentX, currentY + EarthLevelConstants.Generation.SmallCell.yCorrection, 0);
         otherObjects.Add(suitPart);
         
         return new float[] { currentX + cellLenghts[0]/2 + maxXOffset_firstHeightLevel,
@@ -229,7 +229,7 @@ public class EarthLevelGenerator : MonoBehaviour
                     enemies.RemoveAt(index);
                 }
 
-                else if (player.position.x > enemies[index].transform.position.x + GenerationConstants.requiredHeroOffset)
+                else if (player.position.x > enemies[index].transform.position.x + EarthLevelConstants.Generation.requiredHeroOffset)
                 {
                     Destroy(enemies[index]);
                     enemies.RemoveAt(index);
@@ -249,7 +249,7 @@ public class EarthLevelGenerator : MonoBehaviour
                     otherObjects.RemoveAt(index);
                 }
 
-                else if (player.position.x > otherObjects[index].transform.position.x + GenerationConstants.requiredHeroOffset)
+                else if (player.position.x > otherObjects[index].transform.position.x + EarthLevelConstants.Generation.requiredHeroOffset)
                 {
                     if (otherObjects[index].CompareTag("GravitationSuite"))
                     {
@@ -267,7 +267,7 @@ public class EarthLevelGenerator : MonoBehaviour
                 }
             }
 
-            if (cells.Count == 0 || player.position.x > cells[0].transform.position.x + GenerationConstants.requiredHeroOffset)
+            if (cells.Count == 0 || player.position.x > cells[0].transform.position.x + EarthLevelConstants.Generation.requiredHeroOffset)
             {
                 if (cells[0])
                 {
@@ -283,7 +283,7 @@ public class EarthLevelGenerator : MonoBehaviour
                     suitPartsCollected = danilHero.suitPartsCollected;
                 }
 
-                if (suitPartsCollected < GenerationConstants.suitPartsCount && suitPartsOnMap == 0 && (suitPartsCollected + 1) * GenerationConstants.neededCoinsForSuitePart <= danilHero.coinsCollected)
+                if (suitPartsCollected < EarthLevelConstants.Generation.suitPartsCount && suitPartsOnMap == 0 && (suitPartsCollected + 1) * EarthLevelConstants.Generation.neededCoinsForSuitePart <= danilHero.coinsCollected)
                 {
                     float[] changedHeightLevels = GenerateCellWithSuitPart();
                     currentX_firstHeightLevel = changedHeightLevels[0];
@@ -300,36 +300,4 @@ public class EarthLevelGenerator : MonoBehaviour
             }
         }
     }
-}
-
- public static class GenerationConstants
-{
-    public const int cellTypesCount = 3;
-    public const int suitPartsCount = 6;
-    public const float requiredHeroOffset = 20f;
-    public const int neededCoinsForSuitePart = 6;
-
-    public struct SmallCell
-    {
-        public const int maxEnemiesCount = 1;
-        public const int maxOtherObjectsCount = 2;
-        public const int maxObjectsCount = 2;
-        public const float yCorrection = 0.5f;
-    }
-
-    public struct CommonCell
-    {
-        public const int maxEnemiesCount = 2;
-        public const int maxOtherObjectsCount = 2;
-        public const int maxObjectsCount = 3;
-        public const float yCorrection = 0.5f;
-    }
-
-    public struct BigCell
-    {
-        public const int maxEnemiesCount = 4;
-        public const int maxOtherObjectsCount = 3;
-        public const int maxObjectsCount = 4;
-        public const float yCorrection = 0f;
-    } 
 }

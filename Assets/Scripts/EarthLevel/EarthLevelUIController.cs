@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EarthLevelUIController : MonoBehaviour
 {
@@ -8,8 +10,12 @@ public class EarthLevelUIController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform moneyCountText;
     [SerializeField] private Transform livesCountText;
+    [SerializeField] private List<Transform> suitPartsPanel = new();
 
     private DanilHero danilHero;
+    private int suitPartsCount;
+    private int playerLivesCount;
+    private int moneyCount;
 
     private void Awake()
     {
@@ -21,6 +27,16 @@ public class EarthLevelUIController : MonoBehaviour
             danilHero = player.GetComponent<DanilHero>();
         }
     }
+
+    private void Start()
+    {
+        if (danilHero) {
+            suitPartsCount = danilHero.suitPartsCollected;
+            playerLivesCount = danilHero.health;
+            moneyCount = danilHero.coinsCollected;
+        }
+    }
+
 
     private void FixedUpdate()
     {
@@ -34,15 +50,35 @@ public class EarthLevelUIController : MonoBehaviour
             Invoke("GameOver", 1);
         }
 
-        else if (danilHero.suitPartsCollected == GenerationConstants.suitPartsCount)
+        else if (danilHero.suitPartsCollected == EarthLevelConstants.Generation.suitPartsCount)
         {
             Invoke("GameOver", 1);
         }
 
         else
         {
-            moneyCountText.GetComponent<Text>().text = danilHero.coinsCollected.ToString();
-            livesCountText.GetComponent<Text>().text = danilHero.health.ToString();
+            int currentSuitPartsCount = danilHero.suitPartsCollected;
+            int currentPlayerLivesCount = danilHero.health;
+            int currentMoneyCount = danilHero.coinsCollected;
+
+            if (suitPartsCount != currentSuitPartsCount)
+            {
+                suitPartsPanel[suitPartsCount].GetComponent<Image>().color = Color.white;
+                suitPartsCount = currentSuitPartsCount;
+            }
+
+            if (playerLivesCount != danilHero.health)
+            {
+                livesCountText.GetComponent<Text>().text = currentPlayerLivesCount.ToString();
+                playerLivesCount = currentPlayerLivesCount;
+            }
+
+            if (moneyCount != danilHero.coinsCollected)
+            {
+                moneyCountText.GetComponent<Text>().text = currentMoneyCount.ToString();
+                moneyCount = currentMoneyCount;
+            }
+           
         }
     }
 
@@ -55,6 +91,18 @@ public class EarthLevelUIController : MonoBehaviour
     public void PauseOff()
     {
         pausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 
