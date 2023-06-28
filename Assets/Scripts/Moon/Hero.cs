@@ -87,7 +87,6 @@ public class Hero : Entity
 
     private void Awake()
     {
-        Time.timeScale = 1;
         rb = GetComponent<Rigidbody2D>();
         anim= GetComponent<Animator>();
 

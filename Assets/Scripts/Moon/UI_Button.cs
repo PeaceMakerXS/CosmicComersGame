@@ -88,19 +88,24 @@ public class UI_Button : MonoBehaviour
         {
             SceneManager.UnloadScene("MoonLevel");
             SceneManager.LoadScene("MoonLevel");
+            Time.timeScale = 1;
+
         }
-        
+
     }
     public void scane_sw(int i)
     {
         if (i == 1)//главное меню
         {
             SceneManager.LoadScene("MainMenu");
-            
+            Time.timeScale = 1;
+
         }
         if (i == 2)//следующий уровень
         {
             SceneManager.LoadScene("SunLevel");
+            Time.timeScale = 1;
+
         }
 
     }
