@@ -18,7 +18,7 @@ public class EarthLevelUIController : MonoBehaviour
     private int suitPartsCount;
     private int playerLivesCount;
     private int moneyCount;
-    private bool levelIsPassed;
+    private bool levelIsReached;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class EarthLevelUIController : MonoBehaviour
             suitPartsCount = danilHero.suitPartsCollected;
             playerLivesCount = danilHero.health;
             moneyCount = danilHero.coinsCollected;
-            levelIsPassed = false;
+            levelIsReached = false;
         }
     }
 
@@ -55,7 +55,7 @@ public class EarthLevelUIController : MonoBehaviour
             Invoke("GameOver", 0.5f);
         }
 
-        else if (!levelIsPassed && danilHero.suitPartsCollected == EarthLevelConstants.Generation.suitPartsCount)
+        else if (!levelIsReached && danilHero.suitPartsCollected == EarthLevelConstants.Generation.suitPartsCount)
         {
             Win();
         }
@@ -126,8 +126,15 @@ public class EarthLevelUIController : MonoBehaviour
 
     private void Win()
     {
-        levelIsPassed = true;
+        levelIsReached = true;
         suitPartsPanel[suitPartsCount].GetComponent<Image>().color = Color.white;
+
+        if (PlayerPrefs.GetInt("levelsReached", 0) < 1)
+        {
+            PlayerPrefs.SetInt("levelsReached", 1);
+            PlayerPrefs.Save();
+        }
+
         winPanel.SetActive(true);
         Time.timeScale = 0;
     }
