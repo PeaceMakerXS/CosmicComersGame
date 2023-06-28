@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class NIksHero : MonoBehaviour
 {
+
 
     public float invincibilityDuration = 2f; // Длительность неуязвимости после столкновения с препятствием
     public float blinkInterval = 0.2f; // Интервал между миганиями
@@ -27,6 +29,10 @@ public class NIksHero : MonoBehaviour
 
         playerRenderer = GetComponent<Renderer>();
     }
+
+
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
