@@ -33,4 +33,16 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("SunLevel");
+        Time.timeScale = 1;
+    }    
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+    }
 }
