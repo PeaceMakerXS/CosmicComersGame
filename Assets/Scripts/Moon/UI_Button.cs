@@ -86,10 +86,8 @@ public class UI_Button : MonoBehaviour
     {
         if (i == 1)
         {
-            SceneManager.UnloadScene("MoonLevel");
             SceneManager.LoadScene("MoonLevel");
             Time.timeScale = 1;
-
         }
 
     }

@@ -31,6 +31,8 @@ public class Hero : Entity
     private DynamicGeneration obj;
     public UI_Button intr;
 
+    public GameObject TouchButton;
+
     [SerializeField] private int health;
     [SerializeField] private Image[] hearts;
     [SerializeField] private Sprite alliveHeart;
@@ -123,15 +125,6 @@ public class Hero : Entity
                 State = CosmicStaes.idle;
                 Jump();
             }
-            if (Input.GetButtonDown("Jump") && !isMoving)
-            {
-                State = CosmicStaes.move;
-                startPos = transform.position;
-                endPos = startPos + transform.right * 3;
-
-                StartCoroutine(Move(startPos, endPos));
-                gun.Shoot();
-            }
             if (transform.position.y < -100)
             {
                 Die();
@@ -151,6 +144,16 @@ public class Hero : Entity
             else
                 hearts[i].enabled = false;
         }
+    }
+
+    public void OnTouch()
+    {
+        State = CosmicStaes.move;
+        startPos = transform.position;
+        endPos = startPos + transform.right * 3;
+
+        StartCoroutine(Move(startPos, endPos));
+        gun.Shoot();
     }
 
     private IEnumerator Move(Vector3 startPos, Vector3 endPos)
