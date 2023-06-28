@@ -9,9 +9,7 @@ public class BarrelExplosion : Entity
     public GameObject barrel;
 
     public GameObject Explosion;
-    public Transform explousionParent;
     private GameObject[] Explosions;
-     private GameObject explosionRef;
 
     private GameObject[] Squares;
 
@@ -55,15 +53,14 @@ public class BarrelExplosion : Entity
                     Destroy(Squares[i]);
             }
 
-        explosionRef = Instantiate(Explosion,explousionParent);
+        var explosionRef = Instantiate(Explosion);
         explosionRef.transform.localPosition = new Vector3(barrel.transform.position.x, barrel.transform.position.y, barrel.transform.position.z);
-        Debug.Log(Explosions.Length);
         Destroy(this.gameObject);
     }
 
     private void CheckExpl()
     {
-        if(Explosions.Length >1)
+        if(Explosions.Length >3)
         {
             Destroy(Explosions[0]);
         }

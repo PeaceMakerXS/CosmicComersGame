@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class SquareEnemy : JumpingEnemy
@@ -11,6 +12,9 @@ public class SquareEnemy : JumpingEnemy
     new int lives = 1;
 
     public static JumpingEnemy Instance { get; set; }
+
+    public GameObject Explosion;
+    private GameObject[] Explosions;
 
     Suricsan suricsan;
     private void Start()
@@ -24,6 +28,9 @@ public class SquareEnemy : JumpingEnemy
     protected override void Update()
     {
         base.Update();
+        Explosions = GameObject.FindGameObjectsWithTag("Explosion");
+
+        CheckExpl();
 
         if (IsGrounded && !littlejump)
         {
@@ -46,13 +53,17 @@ public class SquareEnemy : JumpingEnemy
             }
         }
 
-        if (lives == 0) { Die(); }
+        if (lives == 0) 
+        { 
+            Die();
+            var explosionRef = Instantiate(Explosion);
+            explosionRef.transform.localPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Suricsan")) 
-        { 
+        if (collision.gameObject.CompareTag("Suricsan"))
+        {
             lives -= suricsan.damage; 
         }
         if (collision.gameObject.CompareTag("Player"))
@@ -74,6 +85,13 @@ public class SquareEnemy : JumpingEnemy
             distanceCovered = Vector3.Distance(startPos, transform.position);
 
             yield return null;
+        }
+    }
+    private void CheckExpl()
+    {
+        if (Explosions.Length > 3)
+        {
+            Destroy(Explosions[0]);
         }
     }
 }

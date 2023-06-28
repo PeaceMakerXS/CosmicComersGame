@@ -205,3 +205,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpforce: 10
   lives: 3
+  MoveSpeed: 23
+  Explosion: {fileID: 4570133511218820624, guid: 6e1c075de31341b47bc6f1988967b618, type: 3}
+  explousionParent: {fileID: 0}

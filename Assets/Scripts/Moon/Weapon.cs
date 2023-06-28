@@ -30,7 +30,7 @@ public class Weapon : Entity
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        foreach (GameObject weapon in Weapons)
+        foreach (GameObject weapon in Weapons) //не считает коллизию
         {
             if (collision.gameObject.CompareTag("Square") && collision.gameObject.CompareTag("Suricsan"))
             {
