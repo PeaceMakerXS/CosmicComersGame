@@ -17,6 +17,9 @@ TagManager:
   - Explosion
   - Detail
   - Star
+  - pause
+  - win
+  - Lose
   layers:
   - Default
   - TransparentFX
