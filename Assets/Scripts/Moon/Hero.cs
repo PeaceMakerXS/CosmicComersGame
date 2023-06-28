@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hero : Entity
 {
-    [SerializeField] private int herolives;
     [SerializeField] private float jumpforce = 10f;
     private bool IsGrounded = false;
 
@@ -29,7 +29,14 @@ public class Hero : Entity
 
     public Weapon gun;
     private DynamicGeneration obj;
+    public UI_Button intr;
 
+    public GameObject TouchButton;
+
+    [SerializeField] private int health;
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private Sprite alliveHeart;
+    [SerializeField] private Sprite deadHeart;
     private CosmicStaes State
     {
         get { return (CosmicStaes)anim.GetInteger("state"); }
@@ -73,12 +80,22 @@ public class Hero : Entity
             Destroy(collision.gameObject);
             obj.stars_amount++;
         }
+        if (collision.CompareTag("Detail"))
+        {
+            Destroy(collision.gameObject);
+            obj.details_amount++;
+        }
     }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim= GetComponent<Animator>();
+
+        intr = FindObjectOfType<UI_Button>();
+
+        lives = 5;
+        health = lives;
 
         Instance = this;
     }
@@ -87,12 +104,17 @@ public class Hero : Entity
     {
         Squares = GameObject.FindGameObjectsWithTag("Square");
         gun = FindAnyObjectByType<Weapon>();
+        obj = FindObjectOfType<DynamicGeneration>();
         CheckGround();
     }
 
     private void Update()
     {
         obj = FindObjectOfType<DynamicGeneration>();
+        if (obj.details_amount == 6)
+        {
+            intr.Lose_Win(2);
+        }
         if (!dead)
         {
             if (!IsGrounded && !isMoving)
@@ -103,18 +125,35 @@ public class Hero : Entity
                 State = CosmicStaes.idle;
                 Jump();
             }
-            if (Input.GetButtonDown("Jump") && !isMoving)
-            {
-                State = CosmicStaes.move;
-                startPos = transform.position;
-                endPos = startPos + transform.right * 3;
-
-                StartCoroutine(Move(startPos, endPos));
-                gun.Shoot();
-            }
             if (transform.position.y < -100)
+            {
                 Die();
+                intr.Lose_Win(1);
+            }
         }
+        if (health > lives)
+            health= lives;
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+                hearts[i].sprite = alliveHeart;
+            else
+                hearts[i].sprite = deadHeart;
+            if (i < lives)
+                hearts[i].enabled = true;
+            else
+                hearts[i].enabled = false;
+        }
+    }
+
+    public void OnTouch()
+    {
+        State = CosmicStaes.move;
+        startPos = transform.position;
+        endPos = startPos + transform.right * 3;
+
+        StartCoroutine(Move(startPos, endPos));
+        gun.Shoot();
     }
 
     private IEnumerator Move(Vector3 startPos, Vector3 endPos)
@@ -148,13 +187,13 @@ public class Hero : Entity
     }
     public void GetDamage()
     {
-        herolives--;
-        Debug.Log(herolives);
+        lives--;
         if (!dead) { StartCoroutine(GetHit()); }
-        if (herolives <= 0)
+        if (lives <= 0)
         {
             dead= true;
             State = CosmicStaes.dead;
+            intr.Lose_Win(1);
         }
     }
     private IEnumerator GetHit()

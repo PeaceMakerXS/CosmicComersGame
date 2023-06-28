@@ -16,7 +16,7 @@ public class SquareEnemy : JumpingEnemy
     Suricsan suricsan;
     private void Start()
     {
-        lives = 2;
+        lives = 1;
 
         Instance = this;
 
