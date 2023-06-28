@@ -11,10 +11,9 @@ public class SnakeLavaEnemy : SnakeEnemy
         lives = 4;
     }
 
-    public override void GetDamage()
+    public override void GetDamage(int damage)
     {
-        lives--;
-        Debug.Log("SnakeLavaEnemy:" + lives);
+        lives -= damage;
         StartCoroutine(OnHit());
 
         if (lives < 1)

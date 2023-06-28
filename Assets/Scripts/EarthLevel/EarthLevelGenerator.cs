@@ -67,7 +67,7 @@ public class EarthLevelGenerator : MonoBehaviour
         minXOffset_secondHeightLevel = 1.5f;
         maxXOffset_secondHeightLevel = 5f;
 
-        firstCellsCount = 10;
+        firstCellsCount = 16;
 
         currentX_firstHeightLevel = CellsParent.position.x;
         currentX_secondHeightLevel = CellsParent.position.x;
@@ -306,8 +306,8 @@ public class EarthLevelGenerator : MonoBehaviour
 {
     public const int cellTypesCount = 3;
     public const int suitPartsCount = 6;
-    public const float requiredHeroOffset = 15f;
-    public const int neededCoinsForSuitePart = 10;
+    public const float requiredHeroOffset = 20f;
+    public const int neededCoinsForSuitePart = 6;
 
     public struct SmallCell
     {
@@ -331,5 +331,5 @@ public class EarthLevelGenerator : MonoBehaviour
         public const int maxOtherObjectsCount = 3;
         public const int maxObjectsCount = 4;
         public const float yCorrection = 0f;
-    }
+    } 
 }

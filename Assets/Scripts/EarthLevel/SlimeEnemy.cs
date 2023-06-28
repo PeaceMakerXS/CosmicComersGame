@@ -40,10 +40,9 @@ public class SlimeEnemy : JumpingEnemy
         sprite.color = Color.white;
     }
 
-    public override void GetDamage()
+    public override void GetDamage(int damage)
     {
-        lives--;
-        Debug.Log("SlimeEnemy:" + lives);
+        lives -= damage;
         StartCoroutine(OnHit());
 
         if (lives < 1)

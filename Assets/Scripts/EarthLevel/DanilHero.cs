@@ -9,11 +9,13 @@ public class DanilHero : Entity
 {
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float attackRange;
-    [SerializeField] private int health;
-    private float attackCoolDown;
-    private float attackAnimationDurarion;
+    [SerializeField] public int health;
 
+    [SerializeField] private float attackRange;
+    [SerializeField] private float attackCoolDown;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private float attackAnimationDurarion;
+ 
     public int coinsCollected;
     public int suitPartsCollected;
 
@@ -49,9 +51,12 @@ public class DanilHero : Entity
         speed = EarthLevelConstants.Player.initialSpeed;
         jumpForce = EarthLevelConstants.Player.initialJumpForce;
         health = EarthLevelConstants.Player.initialHealth;
+
         attackRange = EarthLevelConstants.Player.initialAttackRange;
         attackCoolDown = EarthLevelConstants.Player.initialAttackCoolDown;
+        attackDamage = EarthLevelConstants.Player.initialAttackDamage;
         attackAnimationDurarion = EarthLevelConstants.Player.attackAnimationDuration;
+
 
         coinsCollected = 0;
         suitPartsCollected = 0;
@@ -67,23 +72,26 @@ public class DanilHero : Entity
 
     private void Update()
     {
-        if (!isAttacking && isGrounded)
+        if (health > 0)
         {
-            State = States.idle;
-            if (joystick.Vertical > 0.5f)
+            if (!isAttacking && isGrounded)
             {
-                Jump();
+                State = States.idle;
+                if (joystick.Vertical > 0.5f)
+                {
+                    Jump();
+                }
             }
-        }
 
-        if (!isAttacking && joystick.Horizontal != 0)
-        {
-            Run();
-        }
+            if (!isAttacking && joystick.Horizontal != 0)
+            {
+                Run();
+            }
 
-        if (Input.GetButton("Jump"))
-        {
-            Attack();
+            if (Input.GetButton("Jump"))
+            {
+                Attack();
+            }
         }
     }
 
@@ -95,18 +103,16 @@ public class DanilHero : Entity
         switch (collisionObjectTag)
         {
             case "Enemy":
-                GetDamage();
+                GetDamage(1);
                 break;
 
             case "Coin":
                 coinsCollected++;
                 Destroy(collision.gameObject);
-                Debug.Log("Собрано монет: " + coinsCollected);
                 break;
 
             case "GravitationSuite":
                 suitPartsCollected++;
-                Debug.Log("Собрано частей костюма:" + suitPartsCollected);
                 Destroy(collisionObject);
                 break;
         }
@@ -183,7 +189,7 @@ public class DanilHero : Entity
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            colliders[i].GetComponent<Entity>().GetDamage();
+            colliders[i].GetComponent<Entity>().GetDamage(attackDamage);
         }
     }
 
@@ -209,10 +215,9 @@ public class DanilHero : Entity
         isRecharged = true;
     }
 
-    public override void GetDamage()
+    public override void GetDamage(int damage)
     {
-        health--;
-        Debug.Log("Hero:" + health);
+        health -= damage;
         StartCoroutine(OnHit());
 
         if (health < 1)
@@ -224,7 +229,6 @@ public class DanilHero : Entity
     public override void Die()
     {
         State = States.death;
-        base.Die();
     }
 }
 

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class SnakeEnemy : Entity
 {
-    [SerializeField] protected int lives;
-
     protected SpriteRenderer sprite;
     private Animator _animator;
     private Collider2D _collider;

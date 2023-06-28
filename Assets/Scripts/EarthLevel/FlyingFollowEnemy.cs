@@ -5,7 +5,6 @@ using UnityEngine;
 public class FlyingFollowEnemy : Entity
 {
     [SerializeField] private float speed = 2.5f;
-    [SerializeField] private int lives;
 
     private Transform player;
     private SpriteRenderer sprite;
@@ -18,7 +17,7 @@ public class FlyingFollowEnemy : Entity
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        lives = 5;
+        lives = 4;
     }
 
     void Update()
@@ -45,10 +44,9 @@ public class FlyingFollowEnemy : Entity
         }
     }
 
-    public override void GetDamage()
+    public override void GetDamage(int damage)
     {
-        lives--;
-        Debug.Log("FlyingEnemy:" + lives);
+        lives-=damage;
         StartCoroutine(OnHit());
 
         if (lives < 1)

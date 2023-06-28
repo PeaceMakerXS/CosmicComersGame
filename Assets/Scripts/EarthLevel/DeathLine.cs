@@ -9,7 +9,7 @@ public class DeathLine : MonoBehaviour
         deathEntity = collision.gameObject.GetComponent<Entity>();
         if (deathEntity)
         {
-            deathEntity.Die();
+            Destroy(collision.gameObject);
         }
     }
 

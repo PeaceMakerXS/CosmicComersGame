@@ -8,7 +8,6 @@ using UnityEditor.SearchService;
 public class JumpingEnemy : Entity
 {
     [SerializeField] protected float jumpforce;
-    [SerializeField] protected int lives;
 
     protected SpriteRenderer sprite;
     protected Rigidbody2D rb;
