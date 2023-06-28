@@ -154,6 +154,37 @@ Transform:
   m_Father: {fileID: 687109437}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &264995521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 264995522}
+  m_Layer: 0
+  m_Name: Stars and Details
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &264995522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264995521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.115876034, y: -0.27676755, z: -3.3118205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483615218
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da68ea940e65a324db7f6d2b4157f401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 3
+  herolives: 20
   jumpforce: 12
   score: 0
   MoveSpeed: 30
@@ -900,7 +931,7 @@ GameObject:
   m_Layer: 0
   m_Name: Zero
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -982,6 +1013,17 @@ MonoBehaviour:
   spikeParent: {fileID: 888445623}
   Barrel: {fileID: 5947950291561641062, guid: 5708601a5c28724418952994c146ef53, type: 3}
   barrelParent: {fileID: 50696383}
+  Star: {fileID: 4667686798884091536, guid: e92fef1c6083b084596912b76e4670f0, type: 3}
+  StarParent: {fileID: 264995522}
+  stars_amount: 0
+  Details_toc:
+  - {fileID: 191101944811323080, guid: 21d0cad05fa6adb4ea386fa5334e6cad, type: 3}
+  - {fileID: 8720989711517824245, guid: 67e528bc94d99034c9944c9b1cf3b5cc, type: 3}
+  - {fileID: 1741226040165824607, guid: 161f6ae42808fb64fb41d0186f150339, type: 3}
+  - {fileID: 4999019397936443147, guid: f867ec512d49d9f499d81bbb956b3e4e, type: 3}
+  - {fileID: 8792985736883168439, guid: c0f6f6260ad9219419381163675208ca, type: 3}
+  - {fileID: 8693253064522787621, guid: 25b82495ed50fb54788f17d5059dc6ad, type: 3}
+  details_amount: 0
 --- !u!1 &1939565443
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +1037,7 @@ GameObject:
   m_Layer: 0
   m_Name: ShotPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

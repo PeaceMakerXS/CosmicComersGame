@@ -43,10 +43,9 @@ public class DynamicGeneration : MonoBehaviour
 
     //details
     public List<GameObject> Details_toc = new List<GameObject>();
-    private int details_amount = 0;
+    public int details_amount = 0;
 
     private GameObject[] Stars;
-    private GameObject[] Details;
 
     private void Start()
     {
@@ -57,7 +56,8 @@ public class DynamicGeneration : MonoBehaviour
     private void Update()
     {
         Stars = GameObject.FindGameObjectsWithTag("Star");
-        Details = GameObject.FindGameObjectsWithTag("Detail");
+
+        Debug.Log(stars_amount);
 
         if (Hero.Instance!= null)
         {
@@ -87,6 +87,13 @@ public class DynamicGeneration : MonoBehaviour
             {
                 Destroy(Barrels[0]);
                 Barrels.RemoveAt(0);
+            }
+            foreach (var star in Stars)
+            {
+                if (Hero.Instance.transform.position.x > star.transform.position.x + 35f)
+                {
+                    Destroy(star);
+                }
             }
         }
     }
@@ -121,28 +128,13 @@ public class DynamicGeneration : MonoBehaviour
         switch (situation)
         {
             case 0: //звезды 
-                int stars_q = Random.Range(0, 5);
-                for (int i = 0; i <= stars_q; i++)
-                {
-                    var star = Instantiate(Star, StarParent);
-                    star.transform.localPosition = new Vector3(x, y, 0);
-                    x++;
-                }
-                if (stars_amount>=10)
-                {
-                    if (Details_toc.Count> 0)
-                    {
-                        int random_detail = Random.Range(0, Details_toc.Count);
-                        var detail = Instantiate(Details_toc[random_detail], StarParent);
-                        detail.transform.localPosition = new Vector3(x, y, 0);
-                        Details_toc.Remove(detail);
-                    }
-                }
+                GenerateStars();
+                GenerateDetails();
                 break;
             case 1: //квадраты
                 random_square_borl = Random.Range(0, 11); //большой или м маленький
 
-                if (random_square_borl <= 8)
+                if (random_square_borl <= 7)
                 {
                     random_amount_squares = Random.Range(1, 4);//на количество
                     Square = Squares_toc[Random.Range(0, 2)];
@@ -164,9 +156,16 @@ public class DynamicGeneration : MonoBehaviour
                     GenerateBarrel(x);
                     x += 1;
                 }
+
+                GenerateDetails();
                 break;
             case 3://спайк
-                GenerateSpike(x + Random.Range(-2, 4));
+                x += Random.Range(-1, 4);
+                GenerateSpike(x);
+
+                x += 1;
+                GenerateStars();
+                GenerateDetails();
                 break;
             case 4://2 квадрата и бочка
                 Square = Squares_toc[Random.Range(0, 2)];
@@ -188,11 +187,19 @@ public class DynamicGeneration : MonoBehaviour
                 Square = Squares_toc[Random.Range(0, 2)];
                 GenerateBarrel(x);
                 GenerateLittleSquare(x);
+
+                x += 2;
+                GenerateStars();
+                GenerateDetails();
                 break;
             case 7://друг на друге квадраты
                 Square = Squares_toc[Random.Range(0, 2)];
                 GenerateLittleSquare(x);
                 GenerateLittleSquare(x);
+
+                x += 2;
+                GenerateStars();
+                GenerateDetails();
                 break;
             case 8://башня квадратов
                 Square = Squares_toc[Random.Range(0, 2)];
@@ -212,9 +219,7 @@ public class DynamicGeneration : MonoBehaviour
 
     private void GenerateLittleSquare(float x)
     {
-        Debug.Log(Square);
         var square = Instantiate(Square, squaresParent);
-        Debug.Log(square);
         square.transform.localPosition = new Vector3(x, y + 1, 0);
         Squares.Add(square);
     }
@@ -241,6 +246,33 @@ public class DynamicGeneration : MonoBehaviour
         spike.transform.localPosition = new Vector3(x , y + 0.5f, 0);
     }
 
+    private void GenerateStars()
+    {
+        int stars_q = Random.Range(0, 6);
+        y += Random.Range(0, 3);
+        for (int i = 0; i <= stars_q; i++)
+        {
+            var star = Instantiate(Star, StarParent);
+            star.transform.localPosition = new Vector3(x, y, 0);
+            x++;
+        }
+    }
+
+    private void GenerateDetails()
+    {
+        if (stars_amount >= 15)
+        {
+            int chance = Random.Range(0, 11);
+            if (chance<=7)
+            {
+                y += Random.Range(0, 2);
+                int random_detail = Random.Range(0, Details_toc.Count);
+                var detail = Instantiate(Details_toc[random_detail], StarParent);
+                detail.transform.localPosition = new Vector3(x, y, 0);
+                Details_toc.RemoveAt(random_detail);
+            }
+        }
+    }
     private void Ran()
     {
         random_cell = Random.Range(0, 5);

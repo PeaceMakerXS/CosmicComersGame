@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hero : Entity
 {
-    [SerializeField] private int herolives;
     [SerializeField] private float jumpforce = 10f;
     private bool IsGrounded = false;
 
@@ -30,6 +30,10 @@ public class Hero : Entity
     public Weapon gun;
     private DynamicGeneration obj;
 
+    [SerializeField] private int health;
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private Sprite alliveHeart;
+    [SerializeField] private Sprite deadHeart;
     private CosmicStaes State
     {
         get { return (CosmicStaes)anim.GetInteger("state"); }
@@ -73,12 +77,20 @@ public class Hero : Entity
             Destroy(collision.gameObject);
             obj.stars_amount++;
         }
+        if (collision.CompareTag("Detail"))
+        {
+            Destroy(collision.gameObject);
+            obj.details_amount++;
+        }
     }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim= GetComponent<Animator>();
+
+        lives = 5;
+        health = lives;
 
         Instance = this;
     }
@@ -115,6 +127,19 @@ public class Hero : Entity
             if (transform.position.y < -100)
                 Die();
         }
+        if (health > lives)
+            health= lives;
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+                hearts[i].sprite = alliveHeart;
+            else
+                hearts[i].sprite = deadHeart;
+            if (i < lives)
+                hearts[i].enabled = true;
+            else
+                hearts[i].enabled = false;
+        }
     }
 
     private IEnumerator Move(Vector3 startPos, Vector3 endPos)
@@ -148,10 +173,10 @@ public class Hero : Entity
     }
     public void GetDamage()
     {
-        herolives--;
-        Debug.Log(herolives);
+        lives--;
+        Debug.Log(lives);
         if (!dead) { StartCoroutine(GetHit()); }
-        if (herolives <= 0)
+        if (lives <= 0)
         {
             dead= true;
             State = CosmicStaes.dead;
