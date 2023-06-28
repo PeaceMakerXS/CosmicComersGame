@@ -62,9 +62,9 @@ public static class EarthLevelConstants
     public struct Generation
     {
         public const int cellTypesCount = 3;
-        public const int suitPartsCount = 6;
+        public const int suitPartsCount = 2;
         public const float requiredHeroOffset = 20f;
-        public const int neededCoinsForSuitePart = 6;
+        public const int neededCoinsForSuitePart = 3;
 
         public struct SmallCell
         {

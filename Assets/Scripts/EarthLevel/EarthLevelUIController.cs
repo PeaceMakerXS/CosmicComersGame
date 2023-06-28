@@ -7,6 +7,8 @@ public class EarthLevelUIController : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject winPanel;
+
     [SerializeField] private Transform player;
     [SerializeField] private Transform moneyCountText;
     [SerializeField] private Transform livesCountText;
@@ -16,11 +18,13 @@ public class EarthLevelUIController : MonoBehaviour
     private int suitPartsCount;
     private int playerLivesCount;
     private int moneyCount;
+    private bool levelIsPassed;
 
     private void Awake()
     {
         pausePanel.SetActive(false);
         losePanel.SetActive(false);
+        winPanel.SetActive(false);
 
         if (player)
         {
@@ -34,6 +38,7 @@ public class EarthLevelUIController : MonoBehaviour
             suitPartsCount = danilHero.suitPartsCollected;
             playerLivesCount = danilHero.health;
             moneyCount = danilHero.coinsCollected;
+            levelIsPassed = false;
         }
     }
 
@@ -42,17 +47,17 @@ public class EarthLevelUIController : MonoBehaviour
     {
         if (!player)
         {
-            Invoke("GameOver", 1);
+            Invoke("GameOver", 0.5f);
         }
 
         else if ( danilHero.health < 1)
         {
-            Invoke("GameOver", 1);
+            Invoke("GameOver", 0.5f);
         }
 
-        else if (danilHero.suitPartsCollected == EarthLevelConstants.Generation.suitPartsCount)
+        else if (!levelIsPassed && danilHero.suitPartsCollected == EarthLevelConstants.Generation.suitPartsCount)
         {
-            Invoke("GameOver", 1);
+            Win();
         }
 
         else
@@ -91,6 +96,7 @@ public class EarthLevelUIController : MonoBehaviour
     public void PauseOff()
     {
         pausePanel.SetActive(false);
+        winPanel.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -100,15 +106,29 @@ public class EarthLevelUIController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ToMainMenu()
+    public void MainMenuLoad()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void NextLevelLoad()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1;
     }
 
     private void GameOver()
     {
         losePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    private void Win()
+    {
+        levelIsPassed = true;
+        suitPartsPanel[suitPartsCount].GetComponent<Image>().color = Color.white;
+        winPanel.SetActive(true);
         Time.timeScale = 0;
     }
 }
