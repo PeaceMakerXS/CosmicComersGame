@@ -9,6 +9,7 @@ public class BarrelExplosion : Entity
     public GameObject barrel;
 
     public GameObject Explosion;
+    public GameObject SquareExplosion;
     private GameObject[] Explosions;
 
     private GameObject[] Squares;
@@ -50,7 +51,10 @@ public class BarrelExplosion : Entity
             for (int i = 0; i< Squares.Length; i++)
             {
                 if (Mathf.Abs(Squares[i].transform.position.x - barrel.transform.position.x) < 5)
+                {
                     Destroy(Squares[i]);
+                    Instantiate(SquareExplosion);
+                }
             }
 
         var explosionRef = Instantiate(Explosion);
@@ -60,7 +64,7 @@ public class BarrelExplosion : Entity
 
     private void CheckExpl()
     {
-        if(Explosions.Length >3)
+        if(Explosions.Length >5)
         {
             Destroy(Explosions[0]);
         }

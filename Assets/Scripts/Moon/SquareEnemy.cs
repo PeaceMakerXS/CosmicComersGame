@@ -30,8 +30,6 @@ public class SquareEnemy : JumpingEnemy
         base.Update();
         Explosions = GameObject.FindGameObjectsWithTag("Explosion");
 
-        CheckExpl();
-
         if (IsGrounded && !littlejump)
         {
             k++;
@@ -85,13 +83,6 @@ public class SquareEnemy : JumpingEnemy
             distanceCovered = Vector3.Distance(startPos, transform.position);
 
             yield return null;
-        }
-    }
-    private void CheckExpl()
-    {
-        if (Explosions.Length > 3)
-        {
-            Destroy(Explosions[0]);
         }
     }
 }
