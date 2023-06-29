@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 public class NIksHero : MonoBehaviour
 {
+    private bool isMovingUp = false;
+    private bool isMovingDown = false;
+
+
     [SerializeField] private Image[] hearts;
     [SerializeField] private Sprite aliveHeart;
     [SerializeField] private Sprite deadHeart;
@@ -31,7 +37,7 @@ public class NIksHero : MonoBehaviour
 
     private Rigidbody2D rb;
 
-
+    
 
     private void Start()
     {
@@ -136,6 +142,23 @@ public class NIksHero : MonoBehaviour
     }
 
 
+    public void OnPointerDownUp()
+    {
+        isMovingUp = true;
+    }
+
+    public void OnPointerDownDown()
+    {
+        isMovingDown = true;
+    }
+
+    public void OnPointerUp()
+    {
+        isMovingUp = false;
+        isMovingDown = false;
+    }
+
+
     private void Update()
     {
 
@@ -147,7 +170,17 @@ public class NIksHero : MonoBehaviour
 
         // Получаем ввод от пользователя по горизонтали и вертикали
         //float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveVertical = 0f;
+
+        if (isMovingUp)
+        {
+            moveVertical = 1f;
+        }
+        else if (isMovingDown)
+        {
+            moveVertical = -1f;
+        }
+
 
         // Создаем вектор направления на основе ввода
         Vector2 movement = new Vector2(speed, moveVertical*speed2);
