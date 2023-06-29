@@ -51,12 +51,11 @@ public class DynamicGeneration : MonoBehaviour
     {
         Ran();
         StartGenerate();
+        Stars = GameObject.FindGameObjectsWithTag("Star");
     }
 
     private void Update()
     {
-        Stars = GameObject.FindGameObjectsWithTag("Star");
-
         if (Hero.Instance!= null)
         {
             if (Hero.Instance.transform.position.x > Cells[0].transform.position.x + 35f)
@@ -86,13 +85,14 @@ public class DynamicGeneration : MonoBehaviour
                 Destroy(Barrels[0]);
                 Barrels.RemoveAt(0);
             }
-            foreach (var star in Stars)
-            {
-                if (Hero.Instance.transform.position.x > star.transform.position.x + 35f)
+            if (Stars.Length> 0) 
+                foreach (var star in Stars)
                 {
-                    Destroy(star);
+                    if (Hero.Instance.transform.position.x > star.transform.position.x + 35f)
+                    {
+                        Destroy(star);
+                    }
                 }
-            }
         }
     }
 
@@ -254,6 +254,7 @@ public class DynamicGeneration : MonoBehaviour
             star.transform.localPosition = new Vector3(x, y, 0);
             x++;
         }
+        Stars = GameObject.FindGameObjectsWithTag("Star");
     }
 
     private void GenerateDetails()
