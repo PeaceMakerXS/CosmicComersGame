@@ -29,11 +29,10 @@ public class Hero : Entity
 
     public Weapon gun;
     private DynamicGeneration obj;
-    public UI_Button intr;
 
     public GameObject TouchButton;
 
-    [SerializeField] private int health;
+    public int health;
     [SerializeField] private Image[] hearts;
     [SerializeField] private Sprite alliveHeart;
     [SerializeField] private Sprite deadHeart;
@@ -92,8 +91,6 @@ public class Hero : Entity
         rb = GetComponent<Rigidbody2D>();
         anim= GetComponent<Animator>();
 
-        intr = FindObjectOfType<UI_Button>();
-
         lives = 5;
         health = lives;
 
@@ -111,10 +108,6 @@ public class Hero : Entity
     private void Update()
     {
         obj = FindObjectOfType<DynamicGeneration>();
-        if (obj.details_amount == 6)
-        {
-            intr.Lose_Win(2);
-        }
         if (!dead)
         {
             if (!IsGrounded && !isMoving)
@@ -128,7 +121,6 @@ public class Hero : Entity
             if (transform.position.y < -100)
             {
                 Die();
-                intr.Lose_Win(1);
             }
         }
         if (health > lives)
@@ -193,7 +185,6 @@ public class Hero : Entity
         {
             dead= true;
             State = CosmicStaes.dead;
-            intr.Lose_Win(1);
         }
     }
     private IEnumerator GetHit()
