@@ -85,14 +85,6 @@ public class DynamicGeneration : MonoBehaviour
                 Destroy(Barrels[0]);
                 Barrels.RemoveAt(0);
             }
-            if (Stars.Length> 0) 
-                foreach (var star in Stars)
-                {
-                    if (Hero.Instance.transform.position.x > star.transform.position.x + 35f)
-                    {
-                        Destroy(star);
-                    }
-                }
         }
     }
 
@@ -255,6 +247,14 @@ public class DynamicGeneration : MonoBehaviour
             x++;
         }
         Stars = GameObject.FindGameObjectsWithTag("Star");
+        if (Stars.Length > 0)
+            foreach (var star in Stars)
+            {
+                if (Hero.Instance.transform.position.x > star.transform.position.x + 35f)
+                {
+                    Destroy(star);
+                }
+            }
     }
 
     private void GenerateDetails()

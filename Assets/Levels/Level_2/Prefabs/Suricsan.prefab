@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1218085683138563377}
   m_Layer: 0
   m_Name: Suricsan
-  m_TagString: Bullet
+  m_TagString: Suricsan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

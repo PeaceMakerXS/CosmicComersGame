@@ -22,7 +22,7 @@ public class Weapon : Entity
             {
                 if (weapon)
                 {
-                    if (NIksHero.Instance.transform.position.x < weapon.transform.position.x - 10f)
+                    if (Hero.Instance.transform.position.x < weapon.transform.position.x - 10f)
                     {
                         Destroy(weapon);
                         Weapons.Remove(weapon);
