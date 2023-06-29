@@ -18,6 +18,8 @@ TagManager:
   - Bullet
   - BulletHero
   - HeroBullet
+  - Star
+  - Detail
   layers:
   - Default
   - TransparentFX
