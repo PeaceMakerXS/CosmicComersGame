@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class EarthLevelUIController : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject pauseButton;
 
     [SerializeField] private Transform player;
     [SerializeField] private Transform moneyCountText;
@@ -26,6 +26,7 @@ public class EarthLevelUIController : MonoBehaviour
         pausePanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
+        pauseButton.SetActive(true);
 
         if (player)
         {
@@ -75,13 +76,13 @@ public class EarthLevelUIController : MonoBehaviour
 
             if (playerLivesCount != currentPlayerLivesCount)
             {
-                livesCountText.GetComponent<TextMeshProUGUI>().text = currentPlayerLivesCount.ToString();
+                livesCountText.GetComponent<Text>().text = currentPlayerLivesCount.ToString();
                 playerLivesCount = currentPlayerLivesCount;
             }
 
             if (moneyCount != currentMoneyCount)
             {
-                moneyCountText.GetComponent<TextMeshProUGUI>().text = currentMoneyCount.ToString();
+                moneyCountText.GetComponent<Text>().text = currentMoneyCount.ToString();
                 moneyCount = currentMoneyCount;
             }
            
@@ -98,6 +99,7 @@ public class EarthLevelUIController : MonoBehaviour
     {
         pausePanel.SetActive(false);
         winPanel.SetActive(false);
+        pauseButton.SetActive(true);
         Time.timeScale = 1;
     }
 
@@ -121,7 +123,8 @@ public class EarthLevelUIController : MonoBehaviour
 
     private void GameOver()
     {
-        livesCountText.GetComponent<TextMeshProUGUI>().text = "0";
+        livesCountText.GetComponent<Text>().text = "0";
+        pauseButton.SetActive(false);
         losePanel.SetActive(true);
         Time.timeScale = 0;
     }
@@ -137,6 +140,7 @@ public class EarthLevelUIController : MonoBehaviour
             PlayerPrefs.Save();
         }
 
+        pauseButton.SetActive(false);
         winPanel.SetActive(true);
         Time.timeScale = 0;
     }

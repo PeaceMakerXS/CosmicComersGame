@@ -97,23 +97,24 @@ public class DanilHero : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameObject collisionObject = collision.gameObject;
-        string collisionObjectTag = collisionObject.tag;
+        if (collision.gameObject.tag == "Enemy"){
+            GetDamage(1);
+        }
+    }
 
-        switch (collisionObjectTag)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject gameObject = collision.gameObject;
+        switch (gameObject.tag)
         {
-            case "Enemy":
-                GetDamage(1);
-                break;
-
             case "Coin":
                 coinsCollected++;
-                Destroy(collision.gameObject);
+                Destroy(gameObject); 
                 break;
 
             case "GravitationSuite":
                 suitPartsCollected++;
-                Destroy(collisionObject);
+                Destroy(gameObject);
                 break;
         }
     }
@@ -145,19 +146,9 @@ public class DanilHero : Entity
 
     private void CheckGround()
     {
-        int lenght = 0;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
-        GameObject currentObject;
-        foreach (Collider2D collider in colliders)
-        {
-            currentObject = collider.gameObject;
-            if (currentObject.CompareTag("Enemy") || currentObject.CompareTag("Island"))
-            {
-                lenght++;
-            }
-        }
 
-        isGrounded = lenght > 0;
+        isGrounded = colliders.Length > 1;
 
         if (!isAttacking && !isGrounded && rigidBody.velocity.y < 0)
         {
