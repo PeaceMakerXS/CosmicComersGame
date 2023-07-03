@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MoonLevelUIController : MonoBehaviour
@@ -87,9 +85,9 @@ public class MoonLevelUIController : MonoBehaviour
     {
         levelIsReached = true;
 
-        if (PlayerPrefs.GetInt("levelsReached", 0) < 1)
+        if (PlayerPrefs.GetInt("levelsReached", 0) < 2)
         {
-            PlayerPrefs.SetInt("levelsReached", 1);
+            PlayerPrefs.SetInt("levelsReached", 2);
             PlayerPrefs.Save();
         }
 

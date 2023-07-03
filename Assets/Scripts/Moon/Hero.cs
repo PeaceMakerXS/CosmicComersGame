@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,7 +86,9 @@ public class Hero : Entity
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim= GetComponent<Animator>();
+        anim = GetComponent<Animator>();
+        gun = FindAnyObjectByType<Weapon>();
+        obj = FindObjectOfType<DynamicGeneration>();
 
         lives = 5;
         health = lives;
@@ -100,14 +99,11 @@ public class Hero : Entity
     private void FixedUpdate()
     {
         Squares = GameObject.FindGameObjectsWithTag("Square");
-        gun = FindAnyObjectByType<Weapon>();
-        obj = FindObjectOfType<DynamicGeneration>();
         CheckGround();
     }
 
     private void Update()
     {
-        obj = FindObjectOfType<DynamicGeneration>();
         if (!dead)
         {
             if (!IsGrounded && !isMoving)

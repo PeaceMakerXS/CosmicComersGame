@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EarthLevelUIController : MonoBehaviour
 {
@@ -72,15 +73,15 @@ public class EarthLevelUIController : MonoBehaviour
                 suitPartsCount = currentSuitPartsCount;
             }
 
-            if (playerLivesCount != danilHero.health)
+            if (playerLivesCount != currentPlayerLivesCount)
             {
-                livesCountText.GetComponent<Text>().text = currentPlayerLivesCount.ToString();
+                livesCountText.GetComponent<TextMeshProUGUI>().text = currentPlayerLivesCount.ToString();
                 playerLivesCount = currentPlayerLivesCount;
             }
 
-            if (moneyCount != danilHero.coinsCollected)
+            if (moneyCount != currentMoneyCount)
             {
-                moneyCountText.GetComponent<Text>().text = currentMoneyCount.ToString();
+                moneyCountText.GetComponent<TextMeshProUGUI>().text = currentMoneyCount.ToString();
                 moneyCount = currentMoneyCount;
             }
            
@@ -120,6 +121,7 @@ public class EarthLevelUIController : MonoBehaviour
 
     private void GameOver()
     {
+        livesCountText.GetComponent<TextMeshProUGUI>().text = "0";
         losePanel.SetActive(true);
         Time.timeScale = 0;
     }

@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class SquareEnemy : JumpingEnemy
@@ -14,6 +12,7 @@ public class SquareEnemy : JumpingEnemy
     public GameObject Explosion;
 
     Suricsan suricsan;
+
     private void Start()
     {
         lives = 1;
@@ -23,11 +22,16 @@ public class SquareEnemy : JumpingEnemy
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        suricsan = FindAnyObjectByType<Suricsan>();
+    }
+
     protected override void Update()
     {
         base.Update();
-        suricsan = FindAnyObjectByType<Suricsan>();
-
+       
         if (IsGrounded && !littlejump)
         {
             k++;

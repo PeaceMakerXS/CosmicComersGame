@@ -15,7 +15,7 @@ public class SpikeDeath : Entity
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Explosions = GameObject.FindGameObjectsWithTag("Explosion");
     }

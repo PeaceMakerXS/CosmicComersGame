@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -26,6 +23,7 @@ public class DanilHero : Entity
     private Rigidbody2D rigidBody;
     private SpriteRenderer sprite;
     private Animator _animator;
+    private Vector3 direction;
 
     public LayerMask enemy;
     public Transform attackPosition;
@@ -63,6 +61,8 @@ public class DanilHero : Entity
 
         isAttacking = false;
         isRecharged = true;
+
+        direction = transform.right;
     }
 
     private void FixedUpdate()
@@ -87,11 +87,11 @@ public class DanilHero : Entity
             {
                 Run();
             }
-
+            /*
             if (Input.GetButton("Jump"))
             {
                 Attack();
-            }
+            }*/
         }
     }
 
@@ -131,7 +131,7 @@ public class DanilHero : Entity
             State = States.run;
         }
 
-        Vector3 direction = transform.right * joystick.Horizontal;
+        direction = transform.right * joystick.Horizontal;
 
         transform.position = Vector3.MoveTowards(transform.position, transform.position + direction, speed * Time.deltaTime);
 
@@ -189,7 +189,11 @@ public class DanilHero : Entity
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            colliders[i].GetComponent<Entity>().GetDamage(attackDamage);
+            float enemyXCoord = colliders[i].gameObject.transform.position.x;
+            if ((direction.x < 0 && enemyXCoord <= transform.position.x) || (direction.x > 0 && enemyXCoord >= transform.position.x))
+            {
+                colliders[i].GetComponent<Entity>().GetDamage(attackDamage);
+            }
         }
     }
 

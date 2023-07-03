@@ -10,7 +10,7 @@ public class LevelSelector : MonoBehaviour
     {
         /*
         int maxReachedLevel = PlayerPrefs.GetInt("levelsReached", 0);
-
+        
         for (int i = 0; i < levels.Length; i++)
         {
             if (i > maxReachedLevel)

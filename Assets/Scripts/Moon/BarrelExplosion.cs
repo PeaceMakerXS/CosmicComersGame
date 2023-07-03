@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class BarrelExplosion : Entity
 {
@@ -24,12 +21,13 @@ public class BarrelExplosion : Entity
             hero = FindObjectOfType<Hero>().transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Squares = GameObject.FindGameObjectsWithTag("Square");
         Explosions = GameObject.FindGameObjectsWithTag("Explosion");
         CheckExpl();
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject == Hero.Instance.gameObject)

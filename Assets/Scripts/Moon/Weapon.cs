@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +13,7 @@ public class Weapon : Entity
         var bullet = Instantiate(Bullets[0], shotPoint);
         Weapons.Add(bullet);
     }
+
     public void Update()
     {
         if (Weapons.Count > 0)
