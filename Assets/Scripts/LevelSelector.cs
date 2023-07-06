@@ -8,17 +8,18 @@ public class LevelSelector : MonoBehaviour
 
     private void Start()
     {
-        /*
-        int maxReachedLevel = PlayerPrefs.GetInt("levelsReached", 0);
-        
-        for (int i = 0; i < levels.Length; i++)
+        if (PlayerPrefs.GetInt("AllLevelsEnabled", 0) == 0)
         {
-            if (i > maxReachedLevel)
+            int maxReachedLevel = PlayerPrefs.GetInt("levelsReached", 0);
+
+            for (int i = 0; i < levels.Length; i++)
             {
-                levels[i].interactable = false;
+                if (i > maxReachedLevel)
+                {
+                    levels[i].interactable = false;
+                }
             }
         }
-        */
     }
 
     public void SelectLevel(int numberInBuild)
