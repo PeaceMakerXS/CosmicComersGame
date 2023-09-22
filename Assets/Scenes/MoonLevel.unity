@@ -3544,7 +3544,7 @@ MonoBehaviour:
   barrelParent: {fileID: 50696383}
   Star: {fileID: 4667686798884091536, guid: e92fef1c6083b084596912b76e4670f0, type: 3}
   StarParent: {fileID: 264995522}
-  stars_amount: 20
+  stars_amount: 0
   Details_toc:
   - {fileID: 191101944811323080, guid: 21d0cad05fa6adb4ea386fa5334e6cad, type: 3}
   - {fileID: 8720989711517824245, guid: 67e528bc94d99034c9944c9b1cf3b5cc, type: 3}
@@ -3552,7 +3552,7 @@ MonoBehaviour:
   - {fileID: 4999019397936443147, guid: f867ec512d49d9f499d81bbb956b3e4e, type: 3}
   - {fileID: 8792985736883168439, guid: c0f6f6260ad9219419381163675208ca, type: 3}
   - {fileID: 8693253064522787621, guid: 25b82495ed50fb54788f17d5059dc6ad, type: 3}
-  details_amount: 6
+  details_amount: 0
 --- !u!1 &1809144256
 GameObject:
   m_ObjectHideFlags: 0
